@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bank"
+    tools:context=".MainActivity">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#70000000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/creepster"
+        android:textSize="30sp"
+        android:id="@+id/main"
+        android:textColor="#29DF14"
+        android:text="Konoha Bank"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:id="@+id/selectAccType"
+        android:textAlignment="center"
+        android:padding="5dp"
+        android:fontFamily="@font/cherry_cream_soda"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main" />
+    <android.widget.Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/savingsAccount"
+        android:layout_marginTop="280dp"
+        android:fontFamily="@font/cherry_cream_soda"
+        android:background="@drawable/gradient"
+        app:layout_constraintTop_toBottomOf="@id/main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <android.widget.Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentAccount"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/cherry_cream_soda"
+        android:background="@drawable/gradient"
+        app:layout_constraintTop_toBottomOf="@id/savingsAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

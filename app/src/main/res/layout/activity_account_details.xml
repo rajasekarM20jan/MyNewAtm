@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bank"
+    tools:context=".MainActivity">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#70000000"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/creepster"
+        android:textSize="30sp"
+        android:id="@+id/maintxt"
+        android:textColor="#29DF14"
+        android:text="Konoha Bank"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:id="@+id/enterCredentials"
+        android:fontFamily="@font/cherry_cream_soda"
+        android:textSize="17sp"
+        android:textAlignment="center"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/maintxt" />
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:drawableLeft="@drawable/card"
+        android:drawablePadding="10dp"
+        android:inputType="number"
+        android:textColorHint="@color/black"
+        android:id="@+id/enterDebitCard"
+        app:layout_constraintTop_toBottomOf="@id/enterCredentials"
+        android:background="#40ffffff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:padding="5dp"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:drawableLeft="@drawable/pin"
+        android:drawablePadding="10dp"
+        android:inputType="number"
+        android:textColorHint="@color/black"
+        android:id="@+id/enterPin"
+        app:layout_constraintTop_toBottomOf="@id/enterDebitCard"
+        android:background="#40ffffff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <android.widget.Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextInAccDetails"
+        android:layout_marginTop="150dp"
+        android:fontFamily="@font/cherry_cream_soda"
+        android:background="@drawable/gradient"
+        app:layout_constraintTop_toBottomOf="@id/enterPin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
