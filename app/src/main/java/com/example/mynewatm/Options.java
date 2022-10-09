@@ -38,6 +38,12 @@ public class Options extends AppCompatActivity {
             withdraw.setText("withdraw");
             checkBalance.setText("Check Balance");
         }
+        try {
+            getdata();
+            click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     void getdata() throws Exception {
         InputStream getData = getAssets().open("data.json");

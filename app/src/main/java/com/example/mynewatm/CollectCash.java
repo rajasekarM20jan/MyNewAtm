@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class CollectCash extends AppCompatActivity {
     TextView collectCashTxt;
     Button yes,no;
-    String language;
+    String language,debitCardNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +21,7 @@ public class CollectCash extends AppCompatActivity {
         no=(Button) findViewById(R.id.no);
         Intent a=getIntent();
         language=a.getStringExtra("language");
+        debitCardNumber=a.getStringExtra("debitCardNumber");
         if(language.equals("tamil")){
             collectCashTxt.setText("பணத்தை பெற்றுக்கொள்ளவும் \n\n\nஇருப்பை சரிபார்க்க விரும்புகிறீர்களா?");
             yes.setText("ஆம்");
@@ -29,5 +31,31 @@ public class CollectCash extends AppCompatActivity {
             yes.setText("Yes");
             no.setText("No");
         }
+    }
+    void click(){
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getBalancePage();
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getThankYouPage();
+            }
+        });
+    }
+    void getBalancePage(){
+        Intent i=new Intent(this,BalancePage.class);
+        i.putExtra("debitCardNumber",debitCardNumber);
+        i.putExtra("language",language);
+        startActivity(i);
+    }
+    void getThankYouPage(){
+        Intent i=new Intent(this,ThankYou.class);
+        i.putExtra("debitCardNumber",debitCardNumber);
+        i.putExtra("language",language);
+        startActivity(i);
     }
 }
