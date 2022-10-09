@@ -9,7 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.util.ArrayList;
+
 public class AccountDetails extends AppCompatActivity {
+    ArrayList<Database> fromJson = new ArrayList<>();
     TextView enterCredentials;
     EditText enterDebitCard,enterPin;
     Button nextInAccDetails;
@@ -35,16 +42,49 @@ public class AccountDetails extends AppCompatActivity {
             enterPin.setHint("Enter Pin");
             nextInAccDetails.setText("Next");
         }
+        try {
+            getdata();
+            click();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    void getdata() throws Exception {
+        InputStream getData = getAssets().open("data.json");
+        int sizeofJson = getData.available();
+        byte[] store = new byte[sizeofJson];
+        getData.read(store);
+        String abc = new String(store, "UTF-8");
+        JSONArray arr = new JSONArray(abc);
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj = (JSONObject) arr.get(i);
+            String name=(String) obj.get("name");
+            String debitCardNumber=(String) obj.get("debitCardNumber");
+            String dateOfBirth=(String) obj.get("dateOfBirth");
+            String typeOfAccount=(String) obj.get("typeOfAccount");
+            String pin=(String) obj.get("pin");
+            String balance=(String) obj.get("balance");
+            fromJson.add(new Database(name,dateOfBirth,debitCardNumber,typeOfAccount,pin,balance));
+        }
+    }
+    void click(){
         nextInAccDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAccType();
+                for(int i=0;i<fromJson.size();i++){
+                    if(fromJson.get(i).getDebitCardNumber().equals(String.valueOf(enterDebitCard.getText()))) {
+                        if (fromJson.get(i).getPin().equals(String.valueOf(enterPin.getText()))) {
+                            getAccType();
+                        }
+                    }
+                }
             }
         });
-
     }
+
     void getAccType(){
         Intent i= new Intent(this,AccountType.class);
+        i.putExtra("debitCardNumber",String.valueOf(enterDebitCard.getText()));
         i.putExtra("language",language);
         startActivity(i);
     }

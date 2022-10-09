@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Rajasekar",
+    "debitCardNumber" : "8189576190973303",
+    "dateOfBirth": "20-Jan-1998",
+    "typeOfAccount": "SavingsAccount",
+    "pin": "3245",
+    "balance": "19000"
+  },
+  {
+    "name": "JeevaPrakash",
+    "debitCardNumber" : "5538287259071127",
+    "dateOfBirth": "10-Mar-2002",
+    "typeOfAccount": "SavingsAccount",
+    "pin": "1235",
+    "balance": "21000"
+  },
+  {
+    "name": "Sethu",
+    "debitCardNumber" : "4956969067027685",
+    "dateOfBirth": "20-Jul-1999",
+    "typeOfAccount": "CurrentAccount",
+    "pin": "1945",
+    "balance": "29000"
+  },
+  {
+    "name": "Pavan",
+    "debitCardNumber" : "0123456789101112",
+    "dateOfBirth": "20-Sep-1999",
+    "typeOfAccount": "CurrentAccount",
+    "pin": "1947",
+    "balance": "39000"
+  },
+  {
+    "name": "Aadhityan",
+    "debitCardNumber" : "9388251905324627",
+    "dateOfBirth": "20-Aug-2000",
+    "typeOfAccount": "CurrentAccount",
+    "pin": "1645",
+    "balance": "20000"
+  },
+  {
+    "name": "Prithvi",
+    "debitCardNumber" : "9036397936717168",
+    "dateOfBirth": "20-Jul-1998",
+    "typeOfAccount": "SavingsAccount",
+    "pin": "1845",
+    "balance": "27000"
+  },
+  {
+    "name": "Baskaran",
+    "debitCardNumber" : "1303187903415888",
+    "dateOfBirth": "20-Jul-1996",
+    "typeOfAccount": "CurrentAccount",
+    "pin": "1081",
+    "balance": "39000"
+  },
+  {
+    "name": "Charan",
+    "debitCardNumber" : "7366729434578567",
+    "dateOfBirth": "20-Jul-2001",
+    "typeOfAccount": "SavingsAccount",
+    "pin": "1915",
+    "balance": "26000"
+  },
+  {
+    "name": "John",
+    "debitCardNumber" : "7361542027531629",
+    "dateOfBirth": "20-Jul-1999",
+    "typeOfAccount": "SavingsAccount",
+    "pin": "1705",
+    "balance": "200"
+  },
+  {
+    "name": "Vishnu",
+    "debitCardNumber" : "4880594846108947",
+    "dateOfBirth": "20-Jul-1978",
+    "typeOfAccount": "CurrentAccount",
+    "pin": "1075",
+    "balance": "290000"
+  }
+]

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bank"
-    tools:context=".AccountType">
+    tools:context=".CollectCash">
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,12 +23,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:id="@+id/selectAccType"
+        android:id="@+id/collectCashTxt"
         android:textAlignment="center"
         android:padding="5dp"
         android:fontFamily="@font/cherry_cream_soda"
@@ -37,24 +36,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main" />
     <android.widget.Button
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/savingsAccount"
-        android:layout_marginTop="280dp"
+        android:id="@+id/yes"
+        android:layout_marginTop="250dp"
+        android:layout_marginEnd="50dp"
         android:fontFamily="@font/cherry_cream_soda"
         android:background="@drawable/gradient"
-        app:layout_constraintTop_toBottomOf="@id/main"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/collectCashTxt"
         app:layout_constraintEnd_toEndOf="parent"/>
     <android.widget.Button
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/currentAccount"
-        android:layout_marginTop="50dp"
+        android:id="@+id/no"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="50dp"
         android:fontFamily="@font/cherry_cream_soda"
         android:background="@drawable/gradient"
-        app:layout_constraintTop_toBottomOf="@id/savingsAccount"
+        app:layout_constraintTop_toBottomOf="@id/collectCashTxt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
