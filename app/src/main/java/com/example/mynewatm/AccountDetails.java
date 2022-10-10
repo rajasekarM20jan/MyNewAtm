@@ -3,11 +3,13 @@ package com.example.mynewatm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -71,12 +73,21 @@ public class AccountDetails extends AppCompatActivity {
         nextInAccDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean bool=false;
                 for(int i=0;i<fromJson.size();i++){
                     if(fromJson.get(i).getDebitCardNumber().equals(String.valueOf(enterDebitCard.getText()))) {
                         if (fromJson.get(i).getPin().equals(String.valueOf(enterPin.getText()))) {
                             newBalance=fromJson.get(i).getBalance();
+                            bool=true;
                             getAccType();
                         }
+                    }
+                }
+                if(!bool){
+                    if(language.equals("english")){
+                        Toast.makeText(AccountDetails.this, "Enter Valid Credentials", Toast.LENGTH_SHORT).show();
+                    } else if(language.equals("tamil")){
+                        Toast.makeText(AccountDetails.this, "சரியான விவரங்களை உள்ளிடவும்", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -84,6 +95,8 @@ public class AccountDetails extends AppCompatActivity {
     }
 
     void getAccType(){
+        MediaPlayer myMusic=MediaPlayer.create(this,R.raw.dattebayo);
+        myMusic.start();
         Intent i= new Intent(this,AccountType.class);
         i.putExtra("debitCardNumber",String.valueOf(enterDebitCard.getText()));
         i.putExtra("language",language);
