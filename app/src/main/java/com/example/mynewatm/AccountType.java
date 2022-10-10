@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -68,11 +69,19 @@ public class AccountType extends AppCompatActivity {
         savingsAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View view){
+                boolean b=false;
                 for (int i = 0; i < fromJson.size(); i++) {
                     if (fromJson.get(i).getDebitCardNumber().equals(debitCardNumber)){
                         if (fromJson.get(i).getTypeOfAccount().equals("SavingsAccount")) {
+                            b=true;
                             getintent();
                         }
+                    }
+                }if(!b){
+                    if(language.equals("english")){
+                        Toast.makeText(AccountType.this, "Select Only your Account Type", Toast.LENGTH_SHORT).show();
+                    }else if(language.equals("tamil")){
+                        Toast.makeText(AccountType.this, "உங்கள் கணக்கு வகையை மட்டும் தேர்ந்தெடுக்கவும்", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -80,11 +89,19 @@ public class AccountType extends AppCompatActivity {
         currentAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean b=false;
                 for (int i = 0; i < fromJson.size(); i++) {
                     if (fromJson.get(i).getDebitCardNumber().equals(debitCardNumber)){
                         if (fromJson.get(i).getTypeOfAccount().equals("CurrentAccount")) {
+                            b=true;
                             getintent();
                         }
+                    }
+                }if(!b){
+                    if(language.equals("english")){
+                        Toast.makeText(AccountType.this, "Select Only your Account Type", Toast.LENGTH_SHORT).show();
+                    }else if(language.equals("tamil")){
+                        Toast.makeText(AccountType.this, "உங்கள் கணக்கு வகையை மட்டும் தேர்ந்தெடுக்கவும்", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
