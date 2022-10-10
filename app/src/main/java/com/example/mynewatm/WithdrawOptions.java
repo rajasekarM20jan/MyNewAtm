@@ -123,8 +123,14 @@ public class WithdrawOptions extends AppCompatActivity {
                 }
             }
         });
+        otherAmt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getOtherAmtPage();
+            }
+        });
     }
-    void deduct500() throws Exception{
+    void deduct500(){
         int a=500;
         int b=Integer.parseInt(getBalance);
         int newBal;
@@ -135,7 +141,7 @@ public class WithdrawOptions extends AppCompatActivity {
             getCollectCash();
         }
     }
-    void deduct1000() throws Exception{
+    void deduct1000(){
         int a=1000;
         int b=Integer.parseInt(getBalance);
         int newBal;
@@ -146,14 +152,13 @@ public class WithdrawOptions extends AppCompatActivity {
             getCollectCash();
         }
     }
-    void deduct2000() throws Exception{
+    void deduct2000(){
         int a=2000;
         int b=Integer.parseInt(getBalance);
         int newBal;
         if(b>=a){
             newBal=b-a;
-            String balance=String.valueOf(newBal);
-            newBalance=balance;
+            newBalance=Integer.toString(newBal);
             getCollectCash();
         }
     }
@@ -161,8 +166,14 @@ public class WithdrawOptions extends AppCompatActivity {
         Intent i=new Intent(this,CollectCash.class);
         i.putExtra("debitCardNumber",debitCardNumber);
         i.putExtra("language",language);
-        i.putExtra("balance",newBalance);
+        i.putExtra("newBalance",newBalance);
         startActivity(i);
 
+    }
+    void getOtherAmtPage(){
+        Intent i=new Intent(this,OtherAmount.class);
+        i.putExtra("debitCardNumber",debitCardNumber);
+        i.putExtra("language",language);
+        startActivity(i);
     }
 }

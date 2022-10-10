@@ -18,7 +18,7 @@ public class Options extends AppCompatActivity {
     ArrayList<Database> fromJson = new ArrayList<>();
     TextView chooseYourOption;
     Button withdraw,checkBalance;
-    String language,debitCardNumber;
+    String language,debitCardNumber,newBalance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,7 @@ public class Options extends AppCompatActivity {
         Intent a=getIntent();
         language=a.getStringExtra("language");
         debitCardNumber=a.getStringExtra("debitCardNumber");
+        newBalance=a.getStringExtra("newBalance");
         if(language.equals("tamil")){
             chooseYourOption.setText("கீழே உள்ள ஏதேனும் ஒரு விருப்பத்தைத் தேர்ந்தெடுக்கவும்");
             withdraw.setText("தொகை பெறுதல்");
@@ -99,6 +100,7 @@ public class Options extends AppCompatActivity {
         Intent i=new Intent(this,BalancePage.class);
         i.putExtra("language",language);
         i.putExtra("debitCardNumber",debitCardNumber);
+        i.putExtra("newBalance",newBalance);
         startActivity(i);
     }
 }

@@ -18,7 +18,7 @@ public class BalancePage extends AppCompatActivity {
     ArrayList<Database> fromJson = new ArrayList<>();
     TextView balanceTxt;
     Button ok;
-    String language, debitCardNumber;
+    String language, debitCardNumber,newBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class BalancePage extends AppCompatActivity {
         Intent a = getIntent();
         language = a.getStringExtra("language");
         debitCardNumber = a.getStringExtra("debitCardNumber");
+        newBalance=a.getStringExtra("newBalance");
         if (language.equals("tamil")) {
             balanceTxt.setText("உங்கள் இருப்புத் தொகை :");
             ok.setText("சரி");
@@ -66,8 +67,8 @@ public class BalancePage extends AppCompatActivity {
         for (int i = 0; i < fromJson.size(); i++) {
             if (fromJson.get(i).getDebitCardNumber().equals(String.valueOf(debitCardNumber))) {
                 {
-                    String bal=fromJson.get(i).getBalance();
-                    balanceTxt.setText(balanceTxt.getText()+"\n\n\n\n\n\n\n"+bal);
+                    /*String bal=fromJson.get(i).getBalance();*/
+                    balanceTxt.setText(balanceTxt.getText()+"\n\n\n\n\n\n\n"+newBalance);
                 }
             }
         }

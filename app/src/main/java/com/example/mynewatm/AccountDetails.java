@@ -20,7 +20,7 @@ public class AccountDetails extends AppCompatActivity {
     TextView enterCredentials;
     EditText enterDebitCard,enterPin;
     Button nextInAccDetails;
-    String language;
+    String language,newBalance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +74,7 @@ public class AccountDetails extends AppCompatActivity {
                 for(int i=0;i<fromJson.size();i++){
                     if(fromJson.get(i).getDebitCardNumber().equals(String.valueOf(enterDebitCard.getText()))) {
                         if (fromJson.get(i).getPin().equals(String.valueOf(enterPin.getText()))) {
+                            newBalance=fromJson.get(i).getBalance();
                             getAccType();
                         }
                     }
@@ -86,6 +87,7 @@ public class AccountDetails extends AppCompatActivity {
         Intent i= new Intent(this,AccountType.class);
         i.putExtra("debitCardNumber",String.valueOf(enterDebitCard.getText()));
         i.putExtra("language",language);
+        i.putExtra("newBalance",newBalance);
         startActivity(i);
     }
 }

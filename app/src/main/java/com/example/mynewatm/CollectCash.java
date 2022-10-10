@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class CollectCash extends AppCompatActivity {
     TextView collectCashTxt;
     Button yes,no;
-    String language,debitCardNumber;
+    String language,debitCardNumber,newBalance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +22,7 @@ public class CollectCash extends AppCompatActivity {
         Intent a=getIntent();
         language=a.getStringExtra("language");
         debitCardNumber=a.getStringExtra("debitCardNumber");
+        newBalance=a.getStringExtra("newBalance");
         if(language.equals("tamil")){
             collectCashTxt.setText("பணத்தை பெற்றுக்கொள்ளவும் \n\n\nஇருப்பை சரிபார்க்க விரும்புகிறீர்களா?");
             yes.setText("ஆம்");
@@ -31,6 +32,7 @@ public class CollectCash extends AppCompatActivity {
             yes.setText("Yes");
             no.setText("No");
         }
+        click();
     }
     void click(){
         yes.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +52,7 @@ public class CollectCash extends AppCompatActivity {
         Intent i=new Intent(this,BalancePage.class);
         i.putExtra("debitCardNumber",debitCardNumber);
         i.putExtra("language",language);
+        i.putExtra("newBalance",newBalance);
         startActivity(i);
     }
     void getThankYouPage(){

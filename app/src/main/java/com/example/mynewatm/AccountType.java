@@ -18,7 +18,7 @@ public class AccountType extends AppCompatActivity {
     ArrayList<Database> fromJson = new ArrayList<>();
     TextView selectAccType;
     Button savingsAccount,currentAccount;
-    String language,debitCardNumber;
+    String language,debitCardNumber,newBalance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,7 @@ public class AccountType extends AppCompatActivity {
         Intent a=getIntent();
         language=a.getStringExtra("language");
         debitCardNumber=a.getStringExtra("debitCardNumber");
+        newBalance=a.getStringExtra("newBalance");
         if(language.equals("tamil")){
             selectAccType.setText("உங்கள் கணக்கின் வகையைத் தேர்ந்தெடுக்கவும்");
             savingsAccount.setText("சேமிப்பு கணக்கு");
@@ -93,6 +94,7 @@ public class AccountType extends AppCompatActivity {
         Intent i=new Intent(this,Options.class);
         i.putExtra("debitCardNumber",debitCardNumber);
         i.putExtra("language",language);
+        i.putExtra("newBalance",newBalance);
         startActivity(i);
     }
 }
