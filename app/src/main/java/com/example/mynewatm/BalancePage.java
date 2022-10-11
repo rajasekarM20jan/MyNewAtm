@@ -87,8 +87,6 @@ public class BalancePage extends AppCompatActivity {
         });
     }
     void getThankYou(){
-        MediaPlayer myMusic=MediaPlayer.create(this,R.raw.arigato);
-        myMusic.start();
         Intent i= new Intent(this,ThankYou.class);
         i.putExtra("debitCardNumber",debitCardNumber);
         i.putExtra("language",language);

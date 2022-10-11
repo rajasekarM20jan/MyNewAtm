@@ -95,8 +95,6 @@ public class AccountDetails extends AppCompatActivity {
     }
 
     void getAccType(){
-        MediaPlayer myMusic=MediaPlayer.create(this,R.raw.dattebayo);
-        myMusic.start();
         Intent i= new Intent(this,AccountType.class);
         i.putExtra("debitCardNumber",String.valueOf(enterDebitCard.getText()));
         i.putExtra("language",language);
