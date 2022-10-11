@@ -12,6 +12,9 @@
         android:layout_height="80dp"
         android:id="@+id/view"
         android:background="@drawable/top_for_dashboard"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="MissingConstraints"
          />
 

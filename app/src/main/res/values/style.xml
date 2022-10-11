@@ -143,4 +143,44 @@
         <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/nosifer</item>
     </style>
+    <style name="accountDetails">
+    <item name="android:text">User Details</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:textAlignment">center</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/black</item>
+    <item name="fontFamily">@font/cherry_cream_soda</item>
+    </style>
+    <style name="acdetailsname">
+        <item name="android:text">Name :</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
+    </style>
+    <style name="acdetailsusername">
+        <item name="android:text">User Name :</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
+    </style>
+    <style name="acdetailsMPin">
+        <item name="android:text">MPin :</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
+    </style>
+    <style name="acdetailsBalance">
+        <item name="android:text">Balance :</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
+    </style>
 </resources>
