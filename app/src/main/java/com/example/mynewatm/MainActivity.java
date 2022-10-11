@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     void getSignUpPage(){
-        Intent i= new Intent(this,AccountDetails.class);
+        Intent i= new Intent(this,SendMoney.class);
         startActivity(i);
     }
 }
