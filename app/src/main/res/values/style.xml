@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="mainText">
+        <item name="android:text">ROYAL BANK</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/nosifer</item>
+    </style>
+    <style name="linearText">
+        <item name="android:text">Enter Credentials for Login</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/new_rocker</item>
+    </style>
+    <style name="EditTextForUserName">
+        <item name="android:hint">Enter Your User Name</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#685A5A</item>
+        <item name="android:background">#70ffffff</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:drawableLeft">@drawable/card</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+    <style name="EditTextForPin">
+        <item name="android:hint">Enter Your 6 Digit MPin</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#685A5A</item>
+        <item name="android:background">#70ffffff</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:drawableLeft">@drawable/pin</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+    <style name="mainButton">
+        <item name="android:text">Login</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="newUser">
+        <item name="android:text">New User? Sign Up here.</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">#3969E1</item>
+    </style>
+    <style name="SignupName">
+        <item name="android:hint">Enter Your Full Name</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#685A5A</item>
+        <item name="android:background">#70ffffff</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="signupText">
+        <item name="android:text">Enter Credentials For SignUp Process</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/new_rocker</item>
+    </style>
+    <style name="SignupUserName">
+    <item name="android:hint">Enter Your User Name</item>
+    <item name="android:textAlignment">center</item>
+    <item name="android:layout_gravity">center</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:textColorHint">#685A5A</item>
+    <item name="android:background">#70ffffff</item>
+    <item name="android:padding">10dp</item>
+    </style>
+    <style name="signupPin">
+        <item name="android:hint">Enter Your 6 Digit MPin</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#685A5A</item>
+        <item name="android:background">#70ffffff</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="confirmPin">
+        <item name="android:hint">Confirm Your 6 Digit MPin</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColorHint">#685A5A</item>
+        <item name="android:background">#70ffffff</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="submit">
+        <item name="android:text">Submit</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="existingUser">
+        <item name="android:text">Existing User? Click here for SignIn</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">#3969E1</item>
+    </style>
+    <style name="sendMoney">
+        <item name="android:text">Send Money</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:drawableLeft">@drawable/sendmoney</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/nosifer</item>
+    </style>
+    <style name="depositMoney">
+        <item name="android:text">Deposit Money</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:drawableLeft">@drawable/deposit</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/nosifer</item>
+    </style>
+    <style name="viewBalance">
+        <item name="android:text">View Balance</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:drawableLeft">@drawable/viewbalance</item>
+        <item name="android:drawablePadding">15dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/nosifer</item>
+    </style>
+</resources>

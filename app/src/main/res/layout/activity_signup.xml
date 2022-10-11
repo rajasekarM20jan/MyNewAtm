@@ -5,19 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
-
+    tools:context=".Signup">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/mainText"
-        android:layout_margin="50dp"
+        android:layout_margin="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
         android:layout_width="317dp"
-        android:layout_height="432dp"
+        android:layout_height="590dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,46 +26,61 @@
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="175dp"
         tools:ignore="MissingConstraints">
-
         <TextView
             android:id="@+id/textView"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            style="@style/linearText"/>
-
+            style="@style/signupText"/>
         <EditText
-            android:id="@+id/etForUserName"
+            android:id="@+id/signupName"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            style="@style/EditTextForUserName"
-            android:layout_marginTop="50dp"
+            style="@style/SignupName"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:inputType="text"
             android:maxLines="1"/>
         <EditText
-            android:id="@+id/etForMPin"
+            android:id="@+id/userName"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            style="@style/EditTextForPin"
-            android:layout_marginTop="50dp"
+            style="@style/SignupUserName"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:inputType="text"
+            android:maxLines="1"/>
+        <EditText
+            android:id="@+id/signupPin"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            style="@style/signupPin"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:inputType="numberPassword"
             android:maxLength="6"/>
-
+        <EditText
+            android:id="@+id/confirmPin"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            style="@style/confirmPin"
+            android:layout_marginTop="30dp"
+            android:ems="10"
+            android:inputType="numberPassword"
+            android:maxLength="6"/>
         <android.widget.Button
-            android:id="@+id/mainPageButton"
-            style="@style/mainButton"
+            android:id="@+id/signupPageButton"
+            style="@style/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/buttonbg"
             android:fontFamily="@font/new_rocker"
             android:inputType="number" />
         <TextView
-            android:id="@+id/linkForSignup"
+            android:id="@+id/linkForSignIn"
             android:layout_width="match_parent"
-            style="@style/newUser"
+            style="@style/existingUser"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"/>
 

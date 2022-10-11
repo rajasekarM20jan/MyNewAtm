@@ -6,36 +6,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    Button english,tamil;
-    @Override
+    EditText etForUserName,etForMPin;
+    Button mainPageButton;
+    TextView linkForSignup;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        english=(Button) findViewById(R.id.setEnglish);
-        tamil=(Button) findViewById(R.id.setTamil);
-        english.setOnClickListener(new View.OnClickListener() {
+        etForUserName=findViewById(R.id.etForUserName);
+        etForMPin=findViewById(R.id.etForMPin);
+        mainPageButton=findViewById(R.id.mainPageButton);
+        linkForSignup=findViewById(R.id.linkForSignup);
+        linkForSignup.setClickable(true);
+        linkForSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAccDetailsEnglish();
+                getSignUpPage();
             }
         });
-        tamil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getAccDetailsTamil();
-            }
-        });
+
     }
-    void getAccDetailsEnglish(){
-        Intent i=new Intent(this,AccountDetails.class);
-        i.putExtra("language","english");
-        startActivity(i);
-    }
-    void getAccDetailsTamil(){
-        Intent i=new Intent(this,AccountDetails.class);
-        i.putExtra("language","tamil");
+    void getSignUpPage(){
+        Intent i= new Intent(this,Dashboard.class);
         startActivity(i);
     }
 }
