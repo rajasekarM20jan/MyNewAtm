@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".DepositMoney">
 
     <View
@@ -23,11 +24,11 @@
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
+        app:layout_constraintStart_toStartOf="@+id/backInDeposit"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/backInDeposit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -61,7 +62,7 @@
         app:layout_constraintTop_toTopOf="@+id/view6" />
 
     <android.widget.Button
-        android:id="@+id/buttoninDeposit"
+        android:id="@+id/buttonInDeposit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="131dp"

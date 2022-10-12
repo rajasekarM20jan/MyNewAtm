@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/background"
     android:layout_height="match_parent"
-    tools:context=".SendMoney">
-
+    android:background="@drawable/background"
+    tools:context=".ViewBalance">
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
@@ -24,11 +23,11 @@
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/backInSend"
+        app:layout_constraintStart_toStartOf="@+id/backInViewBalance"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/backInSend"
+        android:id="@+id/backInViewBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -40,50 +39,53 @@
         tools:ignore="ContentDescription" />
 
     <View
-        android:id="@+id/view6"
-        android:layout_width="357dp"
-        android:layout_height="593dp"
+        android:id="@+id/view3"
+        android:layout_width="359dp"
+        android:layout_height="148dp"
+        android:layout_margin="30dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/linearbg"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-    <EditText
-        android:id="@+id/enterAmountInSendMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="216dp"
-        android:ems="10"
-        style="@style/enteramountSendMoney"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
-
-    <android.widget.Button
-        android:id="@+id/buttonInSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="132dp"
-        android:background="@drawable/buttonbg"
-        style="@style/submit"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toBottomOf="@+id/enterAmountInSendMoney" />
+    <View
+        android:id="@+id/view4"
+        android:layout_width="362dp"
+        android:layout_height="416dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/linearbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="151dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="148dp"
-        style="@style/SendMoneytxt"
-        app:layout_constraintEnd_toEndOf="@+id/view6"
-        app:layout_constraintStart_toStartOf="@+id/view6"
-        app:layout_constraintTop_toTopOf="@+id/view6" />
+        android:layout_marginTop="30dp"
+        style="@style/ViewBalance_Text"
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toTopOf="@+id/view3" />
+
+    <ListView
+        android:id="@+id/transactionlist"
+        android:layout_width="345dp"
+        android:layout_height="386dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="@+id/view4"
+        app:layout_constraintStart_toStartOf="@+id/view4"
+        app:layout_constraintTop_toTopOf="@+id/view4" />
+
+    <TextView
+        android:id="@+id/displayBalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

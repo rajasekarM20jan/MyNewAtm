@@ -207,4 +207,12 @@
         <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
+    <style name="ViewBalance_Text">
+    <item name="android:text">Your Balance is :</item>
+    <item name="android:textSize">17sp</item>
+    <item name="android:textAlignment">center</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:textColor">@color/black</item>
+    <item name="fontFamily">@font/cherry_cream_soda</item>
+</style>
 </resources>

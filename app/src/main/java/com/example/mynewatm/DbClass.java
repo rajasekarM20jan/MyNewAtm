@@ -7,13 +7,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DbClass extends SQLiteOpenHelper {
+
+
     public DbClass(@Nullable Context context) {
-        super(context, "internData", null, 1);
+        super(context, "UserAccounts", null, 7);
     }
 
     @Override
     public void onCreate(SQLiteDatabase myDB) {
-        myDB.execSQL("CREATE TABLE Interns(name text,userName text,MPin number,balance text,login text)");
+        myDB.execSQL("CREATE TABLE UserDetails(name text,userName text,MPin text,balance text,login text)");
     }
 
     @Override
@@ -21,6 +23,4 @@ public class DbClass extends SQLiteOpenHelper {
        /* myDB.execSQL("DROP TABLE IF EXISTS Interns");
         onCreate(myDB);*/
     }
-
-
 }

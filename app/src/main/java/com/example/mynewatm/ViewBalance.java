@@ -7,13 +7,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AccountDetails extends AppCompatActivity {
-    FloatingActionButton backButton;
-    TextView getName,getUserName,getMPin,getBalance;
+public class ViewBalance extends AppCompatActivity {
+    FloatingActionButton back;
+    TextView displayBalance;
+    ListView transactionList;
     DbClass dbClass;
     SQLiteDatabase dbReader;
     String position;
@@ -22,12 +24,10 @@ public class AccountDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_details);
-        backButton=findViewById(R.id.backButton);
-        getName=findViewById(R.id.getName);
-        getUserName=findViewById(R.id.getUserName);
-        getMPin=findViewById(R.id.getMpin);
-        getBalance=findViewById(R.id.getBalance);
+        setContentView(R.layout.activity_view_balance);
+        back=findViewById(R.id.backInViewBalance);
+        displayBalance=findViewById(R.id.displayBalance);
+        transactionList=findViewById(R.id.transactionlist);
         Intent a=getIntent();
         position=a.getStringExtra("position");
         pos=Integer.parseInt(position);
@@ -35,11 +35,8 @@ public class AccountDetails extends AppCompatActivity {
         dbReader=dbClass.getReadableDatabase();
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         c.moveToPosition(pos);
-        getName.setText(c.getString(0));
-        getUserName.setText(c.getString(1));
-        getMPin.setText(c.getString(2));
-        getBalance.setText(c.getString(3));
-        backButton.setOnClickListener(new View.OnClickListener() {
+        displayBalance.setText(c.getString(3));
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getDashboard();
@@ -49,6 +46,7 @@ public class AccountDetails extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
     }
 
     void getDashboard(){
