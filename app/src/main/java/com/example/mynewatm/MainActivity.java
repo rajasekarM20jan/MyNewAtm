@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    //variable initialization
     EditText etForUserName,etForMPin;
     Button mainPageButton;
     TextView linkForSignup;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     String position;
     String[] data={"name","userName","MPin","balance","login"};
     protected void onCreate(Bundle savedInstanceState) {
+        //variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         etForUserName=findViewById(R.id.etForUserName);
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         dbClass = new DbClass(this);
         dbReader=dbClass.getReadableDatabase();
         linkForSignup.setClickable(true);
+        //creating on click listener for required fields
         linkForSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i= new Intent(this,Signup.class);
         startActivity(i);
     }
+    //method for reading the data
     void getData(){
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         String userName=String.valueOf(etForUserName.getText());
@@ -85,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
             etForMPin.setError("Invalid User Credentials");
         }
     }
+    //method for intending to dashboard
     void getDashboard(){
         Intent i=new Intent(this,Dashboard.class);
         i.putExtra("position",position);

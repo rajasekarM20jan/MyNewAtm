@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Signup extends AppCompatActivity {
+    //Variable Initialization
     EditText signupName,userName,signupPin,confirmPin;
     Button signupPageButton;
     TextView linkForSignIn;
@@ -25,6 +26,7 @@ public class Signup extends AppCompatActivity {
     String[] data={"name","userName","MPin","balance","login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         signupName=findViewById(R.id.signupName);
@@ -35,6 +37,7 @@ public class Signup extends AppCompatActivity {
         linkForSignIn=findViewById(R.id.linkForSignIn);
         dbClass=new DbClass(this);
         dbReader=dbClass.getReadableDatabase();
+        //creating with OnclickListener
         signupPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +56,7 @@ public class Signup extends AppCompatActivity {
     public void onBackPressed() {
 
     }
-
+//Method for pushing data to the table
     void getData(){
         if(signupName.length()!=0){
             if(userName.length()!=0){
@@ -113,6 +116,7 @@ public class Signup extends AppCompatActivity {
             signupName.setError("Name Field is Empty");
         }
     }
+    //Method for intending to login page
     void getLoginPage(){
         Intent i= new Intent(this,MainActivity.class);
         startActivity(i);
