@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
                     if(etForMPin.length()!=0){
                         getData();
                     }else{
-                        etForMPin.setError("Field is Empty");
+                        etForMPin.setError(getString(R.string.empty_field));
                     }
                 }else{
-                    etForUserName.setError("Field is Empty");
+                    etForUserName.setError(getString(R.string.empty_field));
                 }
             }
         });
@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
+        this.finishAffinity();
     }
 
     void getSignUpPage(){

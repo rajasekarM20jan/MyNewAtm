@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/mainText"
+        android:text="@string/royal_bank"
         android:layout_margin="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +32,7 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="250dp"
+            android:text="@string/enter_credentials_login"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
             style="@style/linearText"/>
@@ -40,6 +42,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             style="@style/EditTextForUserName"
+            android:hint="@string/enter_username"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:inputType="text"
@@ -49,6 +52,7 @@
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             style="@style/EditTextForPin"
+            android:hint="@string/enter_mPin"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:inputType="numberPassword"
@@ -57,6 +61,7 @@
         <android.widget.Button
             android:id="@+id/mainPageButton"
             style="@style/mainButton"
+            android:text="@string/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -67,6 +72,7 @@
             android:id="@+id/linkForSignup"
             android:layout_width="match_parent"
             style="@style/newUser"
+            android:text="@string/new_user"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"/>
 

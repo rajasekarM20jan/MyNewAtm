@@ -15,11 +15,15 @@ import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class DepositMoney extends AppCompatActivity {
     FloatingActionButton back;
     EditText enterAmountInDeposit;
     Button buttonInDeposit;
-    ContentValues values;
+    ContentValues values,values1;
     DbClass dbClass;
     String position;
     int pos;
@@ -35,6 +39,7 @@ public class DepositMoney extends AppCompatActivity {
         dbWriter=dbClass.getWritableDatabase();
         dbReader=dbClass.getReadableDatabase();
         values=new ContentValues();
+        values1=new ContentValues();
         back=findViewById(R.id.backInDeposit);
         enterAmountInDeposit=findViewById(R.id.enterAmountInDeposit);
         buttonInDeposit=findViewById(R.id.buttonInDeposit);
@@ -48,7 +53,7 @@ public class DepositMoney extends AppCompatActivity {
                 if(enterAmountInDeposit.length()!=0){
                     getData();
                 }else{
-                    enterAmountInDeposit.setError("Enter the Amount First");
+                    enterAmountInDeposit.setError(getString(R.string.enter_amt_first));
                 }
             }
         });
@@ -71,6 +76,8 @@ public class DepositMoney extends AppCompatActivity {
         startActivity(i);
     }
     void getData(){
+        Date d=new Date();
+        SimpleDateFormat s=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         c.moveToPosition(pos);
         System.out.println("Converted pos"+pos);
@@ -86,9 +93,13 @@ public class DepositMoney extends AppCompatActivity {
             values.put("MPin",c.getString(2));
             values.put("login",c.getString(4));
             dbWriter.update("UserDetails",values,"userName=?",new String[]{user});
+        values1.put("userName",c.getString(1));
+        values1.put("transactions",st+" On "+s.format(d));
+        values1.put("credit","true");
+        dbWriter.insert("Transactions",null,values1);
         AlertDialog.Builder a=new AlertDialog.Builder(DepositMoney.this);
-        a.setTitle("Amount Credited\n");
-        a.setMessage("The amount have been Credited to Your Account Successfully");
+        a.setTitle(getString(R.string.transaction_successful));
+        a.setMessage(getString(R.string.credit_msg));
         a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

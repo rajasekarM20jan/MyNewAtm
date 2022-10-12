@@ -92,8 +92,8 @@ public class Dashboard extends AppCompatActivity {
     }
     void getalert(){
         AlertDialog.Builder a=new AlertDialog.Builder(Dashboard.this);
-        a.setTitle("Log Out!\n");
-        a.setMessage("Do you Want to Logout?\n");
+        a.setTitle(getString(R.string.logout));
+        a.setMessage(getString(R.string.logout_msg));
         a.setCancelable(false);
         a.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override

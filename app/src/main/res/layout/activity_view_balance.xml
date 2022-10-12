@@ -18,6 +18,7 @@
     <TextView
         android:id="@+id/textView8"
         style="@style/mainText"
+        android:text="@string/royal_bank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -66,6 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         style="@style/ViewBalance_Text"
+        android:text="@string/balance_is"
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toTopOf="@+id/view3" />

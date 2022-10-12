@@ -16,6 +16,7 @@ public class DbClass extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase myDB) {
         myDB.execSQL("CREATE TABLE UserDetails(name text,userName text,MPin text,balance text,login text)");
+        myDB.execSQL("CREATE TABLE Transactions(userName text,transactions text,credit text)");
     }
 
     @Override

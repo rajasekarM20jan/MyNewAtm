@@ -68,8 +68,8 @@ public class Signup extends AppCompatActivity {
                             while(c.moveToNext()){
                                 if (c.getString(1).equals(String.valueOf(userName.getText()))) {
                                     AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
-                                    a.setTitle("OOPS!\n");
-                                    a.setMessage("Seems The User Name Already Exists");
+                                    a.setTitle(getString(R.string.oops));
+                                    a.setMessage(getString(R.string.user_exists));
                                     a.setCancelable(false);
                                     b=true;
                                     a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -94,8 +94,8 @@ public class Signup extends AppCompatActivity {
                             }
                         }else{
                             AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
-                            a.setTitle("OOPS!\n");
-                            a.setMessage("Seems Your MPin Does Not Match");
+                            a.setTitle(getString(R.string.oops));
+                            a.setMessage(getString(R.string.mPin_mismatch));
                             a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -104,16 +104,16 @@ public class Signup extends AppCompatActivity {
                             });a.show();
                         }
                     }else{
-                        confirmPin.setError("MPin must be of 6 Digits");
+                        confirmPin.setError(getString(R.string.empty_field));
                     }
                 }else {
-                    signupPin.setError("MPin must be of 6 Digits");
+                    signupPin.setError(getString(R.string.empty_field));
                 }
             }else{
-                userName.setError("User Name is Empty");
+                userName.setError(getString(R.string.empty_field));
             }
         }else{
-            signupName.setError("Name Field is Empty");
+            signupName.setError(getString(R.string.empty_field));
         }
     }
     //Method for intending to login page
