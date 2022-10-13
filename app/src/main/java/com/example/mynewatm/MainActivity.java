@@ -1,8 +1,12 @@
 package com.example.mynewatm;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
                     if(etForMPin.length()!=0){
                         getData1();
                     }else{
-                        etForMPin.setError(getString(R.string.empty_field)); // Setting Error Message if MPin is Empty
+                        etForMPin.setError(getString(R.string.emptyField)); // Setting Error Message if MPin is Empty
                     }
                 }else{
-                    etForUserName.setError(getString(R.string.empty_field)); //Setting error message if UserName is Empty
+                    etForUserName.setError(getString(R.string.emptyField)); //Setting error message if UserName is Empty
                 }
             }
         });
@@ -78,5 +82,26 @@ public class MainActivity extends AppCompatActivity {
         dbControllerMainActivity db=new dbControllerMainActivity();
         db.loginActivity(MainActivity.this);
         new dbControllerMainActivity(MainActivity.this);
+    }
+    public void alreadyLoggedIn(String name,String userName,String MPin,String balance,String login){
+        AlertDialog.Builder alert= new AlertDialog.Builder(this);
+        alert.setTitle(R.string.alreadyLoggedIn);
+        alert.setMessage(R.string.alreadyLoggedInText);
+        alert.setCancelable(false);
+        alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                DbClass dbClass=new DbClass(MainActivity.this);
+                SQLiteDatabase dbWriter=dbClass.getWritableDatabase();
+                ContentValues values= new ContentValues();
+                values.put("userName",userName);
+                values.put("name",name);
+                values.put("login","false");
+                values.put("balance",balance);
+                values.put("MPin",MPin);
+                dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
+                dialogInterface.cancel();
+            }
+        });alert.show();
     }
 }

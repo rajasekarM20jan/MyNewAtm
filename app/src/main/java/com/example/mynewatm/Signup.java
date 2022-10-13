@@ -71,7 +71,7 @@ public class Signup extends AppCompatActivity {
                                 if (c.getString(1).equals(String.valueOf(userName.getText()))) { //if User name exists shows error with alert dialog
                                     AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
                                     a.setTitle(getString(R.string.oops));
-                                    a.setMessage(getString(R.string.user_exists));
+                                    a.setMessage(getString(R.string.userExists));
                                     a.setCancelable(false);
                                     b=true;
                                     a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
@@ -98,7 +98,7 @@ public class Signup extends AppCompatActivity {
                         }else{
                             AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
                             a.setTitle(getString(R.string.oops));
-                            a.setMessage(getString(R.string.mPin_mismatch));
+                            a.setMessage(getString(R.string.mPinMismatch));
                             a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -107,16 +107,16 @@ public class Signup extends AppCompatActivity {
                             });a.show();
                         }
                     }else{
-                        confirmPin.setError(getString(R.string.empty_field));
+                        confirmPin.setError(getString(R.string.emptyField));
                     }
                 }else {
-                    signupPin.setError(getString(R.string.empty_field));
+                    signupPin.setError(getString(R.string.emptyField));
                 }
             }else{
-                userName.setError(getString(R.string.empty_field));
+                userName.setError(getString(R.string.emptyField));
             }
         }else{
-            signupName.setError(getString(R.string.empty_field));
+            signupName.setError(getString(R.string.emptyField));
         }
     }
     //Method for intending to login page

@@ -16,7 +16,6 @@ import android.widget.EditText;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class SendMoney extends AppCompatActivity {
@@ -54,7 +53,7 @@ public class SendMoney extends AppCompatActivity {
                 if(enterAmountInSendMoney.length()!=0){
                     getData();
                 }else{
-                    enterAmountInSendMoney.setError(getString(R.string.enter_amt_first));
+                    enterAmountInSendMoney.setError(getString(R.string.enterAmtFirst));
                 }
             }
         });
@@ -100,8 +99,8 @@ public class SendMoney extends AppCompatActivity {
             dbWriter=dbClass.getWritableDatabase();
             dbWriter.insert("Transactions",null,values1);
             AlertDialog.Builder a=new AlertDialog.Builder(SendMoney.this);
-            a.setTitle(getString(R.string.transaction_successful));
-            a.setMessage(getString(R.string.debit_msg));
+            a.setTitle(getString(R.string.transactionSuccessful));
+            a.setMessage(getString(R.string.debitMsg));
             a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -112,7 +111,7 @@ public class SendMoney extends AppCompatActivity {
             //setting alert Dialog if user does not have enough balance
             AlertDialog.Builder a=new AlertDialog.Builder(SendMoney.this);
             a.setTitle(getString(R.string.oops));
-            a.setMessage(getString(R.string.no_enough_balance));
+            a.setMessage(getString(R.string.noEnoughBalance));
             a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

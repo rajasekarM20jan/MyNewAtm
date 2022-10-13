@@ -2,6 +2,7 @@ package controller;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -25,7 +26,7 @@ public class dbControllerMainActivity {
     TextView linkForSignup;
     SharedPreferences sp;
     SharedPreferences.Editor edit;
-    String position;
+    String position,name,userName,MPin,balance,login;
     public dbControllerMainActivity(){
 
     }
@@ -54,12 +55,32 @@ public class dbControllerMainActivity {
         while(c.moveToNext()){ //checks with the database if user name and pin are existing
             if (c.getString(1).equals(userName)) {
                 if(c.getString(2).equals(mpin)){
-                    position=String.valueOf(c.getPosition());
                     edit.putString("userName",userName);
                     edit.commit();
                     b=true;
-                    UserVerification.getDashboard(position);
-                    break;
+                    this.name=c.getString(0);
+                    this.userName=c.getString(1);
+                    this.MPin=c.getString(2);
+                    this.balance=c.getString(3);
+                    this.login=c.getString(4);
+                    position=String.valueOf(c.getPosition());
+                    String uN=sp.getString("userName","no");
+                    Cursor c2=dbReader.rawQuery("SELECT * FROM UserDetails where userName=?",new String[]{uN});
+                    c2.moveToNext();
+                    if(c2.getString(4).equals("false")) {
+                        dbWriter=dbClass.getWritableDatabase();
+                        values= new ContentValues();
+                        values.put("userName",userName);
+                        values.put("name",name);
+                        values.put("login","true");
+                        values.put("balance",balance);
+                        values.put("MPin",MPin);
+                        dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
+                        UserVerification.getDashboard(position);
+                        break;
+                    }else{
+                        UserVerification.alreadyLoggedIn(name,this.userName,MPin,balance,login);
+                    }
                 }
             }
         }

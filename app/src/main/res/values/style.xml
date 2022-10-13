@@ -4,13 +4,12 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/nosifer</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="linearText">
         <item name="android:textAlignment">center</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/white</item>
-        <item name="fontFamily">@font/new_rocker</item>
     </style>
     <style name="EditTextForUserName">
         <item name="android:textAlignment">center</item>
@@ -59,7 +58,6 @@
         <item name="android:textAlignment">center</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textColor">@color/white</item>
-        <item name="fontFamily">@font/new_rocker</item>
     </style>
     <style name="SignupUserName">
     <item name="android:textAlignment">center</item>
@@ -107,7 +105,7 @@
         <item name="android:drawableLeft">@drawable/sendmoney</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/nosifer</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="depositMoney">
         <item name="android:textSize">20sp</item>
@@ -116,7 +114,7 @@
         <item name="android:drawableLeft">@drawable/deposit</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/nosifer</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="viewBalance">
         <item name="android:textSize">20sp</item>
@@ -125,7 +123,7 @@
         <item name="android:drawableLeft">@drawable/viewbalance</item>
         <item name="android:drawablePadding">15dp</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/nosifer</item>
+        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="accountDetails">
     <item name="android:textSize">20sp</item>
@@ -139,28 +137,24 @@
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="acdetailsusername">
         <item name="android:textSize">17sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="acdetailsMPin">
         <item name="android:textSize">17sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="acdetailsBalance">
         <item name="android:textSize">17sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
-        <item name="fontFamily">@font/cherry_cream_soda</item>
     </style>
     <style name="enteramountSendMoney">
         <item name="android:textColor">@color/white</item>

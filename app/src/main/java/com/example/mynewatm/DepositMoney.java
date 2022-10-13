@@ -16,8 +16,9 @@ import android.widget.EditText;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
+
+import controller.dbControllerDepositMoney;
 
 public class DepositMoney extends AppCompatActivity {
     //variable initialization
@@ -54,9 +55,9 @@ public class DepositMoney extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(enterAmountInDeposit.length()!=0){
-                    getData(); //calling method getData();
+                    getData1(); //calling method getData();
                 }else{
-                    enterAmountInDeposit.setError(getString(R.string.enter_amt_first));
+                    enterAmountInDeposit.setError(getString(R.string.enterAmtFirst));
                 }
             }
         });
@@ -73,46 +74,15 @@ public class DepositMoney extends AppCompatActivity {
 
     }
 
-    void getDashboard(){ // intent for dashboard
+    public void getDashboard(){ // intent for dashboard
         Intent i=new Intent(this,Dashboard.class);
         i.putExtra("position",position);
         startActivity(i);
     }
-    void getData(){
-        //creating this method for depositing the amount into user account details and also for transaction list of the user
-        Date d=new Date();
-        SimpleDateFormat s=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
-        Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-        c.moveToPosition(pos);
-        System.out.println("Converted pos"+pos);
-        String user=c.getString(1);
-        System.out.println("My name"+user);
-        int availableBalance=Integer.parseInt(c.getString(3));
-        String st=String.valueOf(enterAmountInDeposit.getText());
-        if(enterAmountInDeposit.length()!=0){
-        int addAmount=Integer.parseInt(st);
-            String newBalance=Integer.toString((availableBalance+addAmount));
-            values.put("balance",newBalance);
-            values.put("name",c.getString(0));
-            values.put("userName",c.getString(1));
-            values.put("MPin",c.getString(2));
-            values.put("login",c.getString(4));
-            dbWriter.update("UserDetails",values,"userName=?",new String[]{user});
-        values1.put("userName",c.getString(1));
-        values1.put("transactions",st+" On "+s.format(d));
-        values1.put("credit","true");
-        dbWriter.insert("Transactions",null,values1);
-        AlertDialog.Builder a=new AlertDialog.Builder(DepositMoney.this);
-        a.setTitle(getString(R.string.transaction_successful));
-        a.setMessage(getString(R.string.credit_msg));
-        a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                enterAmountInDeposit.setText(null);
-            }
-        });a.show();
-        }else{
-            enterAmountInDeposit.setError(getString(R.string.enter_amt_first));
-        }
+    void getData1(){ //logical activities done through controller class
+        dbControllerDepositMoney deposit= new dbControllerDepositMoney();
+        new dbControllerDepositMoney(DepositMoney.this);
+        deposit.deposit(DepositMoney.this);
+
     }
 }

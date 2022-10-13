@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/textView8"
         style="@style/mainText"
-        android:text="@string/royal_bank"
+        android:text="@string/royalBank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -57,7 +57,7 @@
         android:layout_marginTop="216dp"
         android:ems="10"
         style="@style/enteramountSendMoney"
-        android:hint="@string/enter_amount"
+        android:hint="@string/enterAmount"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
@@ -85,7 +85,7 @@
         android:layout_marginTop="88dp"
         android:layout_marginEnd="148dp"
         style="@style/DepositMoneytxt"
-        android:text="@string/deposit_money"
+        android:text="@string/depositMoney"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintStart_toStartOf="@+id/view6"
         app:layout_constraintTop_toTopOf="@+id/view6" />
