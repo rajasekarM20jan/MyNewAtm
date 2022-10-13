@@ -29,6 +29,7 @@ public class dbControllerMainActivity {
     public dbControllerMainActivity(){
 
     }
+    //creating parameterized constructor for initializing data
     public dbControllerMainActivity(MainActivity mainActivity){
         this.UserVerification =mainActivity;
         etForUserName= UserVerification.findViewById(R.id.etForUserName);
@@ -39,6 +40,7 @@ public class dbControllerMainActivity {
         edit= sp.edit();
         linkForSignup.setClickable(true);
     }
+    //creating method for verification in login
     public void loginActivity(MainActivity mainActivity){
         this.UserVerification =mainActivity;
         dbClass=new DbClass(UserVerification);
@@ -49,7 +51,7 @@ public class dbControllerMainActivity {
         sp= UserVerification.getSharedPreferences("MyPref",MODE_PRIVATE);
         edit= sp.edit();
         boolean b=false;
-        while(c.moveToNext()){
+        while(c.moveToNext()){ //checks with the database if user name and pin are existing
             if (c.getString(1).equals(userName)) {
                 if(c.getString(2).equals(mpin)){
                     position=String.valueOf(c.getPosition());
@@ -61,7 +63,7 @@ public class dbControllerMainActivity {
                 }
             }
         }
-        if(!b){
+        if(!b){ //if user is not existing it is passed to get Error method of main activity.
            UserVerification.getError();
         }
     }

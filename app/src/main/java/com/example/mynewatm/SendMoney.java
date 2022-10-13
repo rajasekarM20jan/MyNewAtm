@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class SendMoney extends AppCompatActivity {
+    //variable initialization
     FloatingActionButton back;
     EditText enterAmountInSendMoney;
     Button buttonInSend;
@@ -32,6 +33,7 @@ public class SendMoney extends AppCompatActivity {
     String[] data={"name","userName","MPin","balance","login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_money);
         dbClass=new DbClass(this);
@@ -45,6 +47,7 @@ public class SendMoney extends AppCompatActivity {
         Intent a=getIntent();
         position=a.getStringExtra("position");
         pos=Integer.parseInt(position);
+        //creating on click listener for back button
         buttonInSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,13 +61,13 @@ public class SendMoney extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDashboard();
+                getDashboard(); //calling method for going back to dashboard
             }
         });
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //disabling on back pressed
 
     }
 
@@ -74,6 +77,7 @@ public class SendMoney extends AppCompatActivity {
         startActivity(i);
     }
     void getData(){
+        //creating method for sending money
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         c.moveToPosition(pos);
         String user=c.getString(1);
@@ -82,7 +86,7 @@ public class SendMoney extends AppCompatActivity {
         int sendAmount=Integer.parseInt(st);
         SimpleDateFormat s=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
         Date d=new Date();
-        if(availableBalance-sendAmount>=0){
+        if(availableBalance-sendAmount>=0){ //checking whether the user has enough balance for transaction
             String newBalance=Integer.toString((availableBalance-sendAmount));
             values.put("balance",newBalance);
             values.put("name",c.getString(0));
@@ -105,6 +109,7 @@ public class SendMoney extends AppCompatActivity {
                 }
             });a.show();
         }else{
+            //setting alert Dialog if user does not have enough balance
             AlertDialog.Builder a=new AlertDialog.Builder(SendMoney.this);
             a.setTitle(getString(R.string.oops));
             a.setMessage(getString(R.string.no_enough_balance));

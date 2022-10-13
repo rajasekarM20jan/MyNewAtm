@@ -14,11 +14,13 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Dashboard extends AppCompatActivity {
+    //variable initialization
     FloatingActionButton logout,accountDetails;
     TextView sendMoney,depositMoney,viewBalance;
     String position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         accountDetails=findViewById(R.id.accountDetails);
@@ -28,34 +30,35 @@ public class Dashboard extends AppCompatActivity {
         viewBalance=findViewById(R.id.viewBalance);
         Intent a =getIntent();
         position=a.getStringExtra("position");
+        //creating on click methods for required fields
         accountDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getAccountPage();
+                getAccountPage(); //gets method to call account page
             }
         });
         sendMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getsendMoneyPage();
+                getsendMoneyPage(); // gets method to call Send money page
             }
         });
         depositMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getdepositPage();
+                getdepositPage(); //gets method to call deposit money page
             }
         });
         viewBalance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getViewBalancePage();
+                getViewBalancePage(); //Gets method to call view balance page
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getalert();
+                getalert(); //method for popping non cancellable alert
             }
         });
 
@@ -66,31 +69,31 @@ public class Dashboard extends AppCompatActivity {
 
     }
 
-    void getAccountPage(){
+    void getAccountPage(){ //intent for account page
         Intent i=new Intent(this,AccountDetails.class);
         i.putExtra("position",position);
         System.out.println("Sending Position is"+position);
         startActivity(i);
     }
-    void getsendMoneyPage(){
+    void getsendMoneyPage(){ // intent for send money page
         Intent i=new Intent(this,SendMoney.class);
         i.putExtra("position",position);
         System.out.println("Sending Position is"+position);
         startActivity(i);
     }
-    void getdepositPage(){
+    void getdepositPage(){ // intent for deposit money page
         Intent i=new Intent(this,DepositMoney.class);
         i.putExtra("position",position);
         System.out.println("Sending Position is"+position);
         startActivity(i);
     }
-    void getViewBalancePage(){
+    void getViewBalancePage(){ // intent for view balance page
         Intent i=new Intent(this,ViewBalance.class);
         i.putExtra("position",position);
         System.out.println("Sending Position is"+position);
         startActivity(i);
     }
-    void getalert(){
+    void getalert(){ // method for alert on logout being clicked
         AlertDialog.Builder a=new AlertDialog.Builder(Dashboard.this);
         a.setTitle(getString(R.string.logout));
         a.setMessage(getString(R.string.logout_msg));
@@ -104,12 +107,12 @@ public class Dashboard extends AppCompatActivity {
         a.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                getLoginPage();
+                getLoginPage(); // calling method for moving to login page
             }
         });
         a.show();
     }
-    void getLoginPage(){
+    void getLoginPage(){ // intent for login page
         Intent i=new Intent(this,MainActivity.class);
         startActivity(i);
     }

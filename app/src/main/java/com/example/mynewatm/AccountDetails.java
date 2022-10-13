@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AccountDetails extends AppCompatActivity {
+    //variable initialization
     FloatingActionButton backButton;
     TextView getName,getUserName,getMPin,getBalance;
     DbClass dbClass;
@@ -21,6 +22,7 @@ public class AccountDetails extends AppCompatActivity {
     String[] data={"name","userName","MPin","balance","login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_details);
         backButton=findViewById(R.id.backButton);
@@ -33,8 +35,10 @@ public class AccountDetails extends AppCompatActivity {
         pos=Integer.parseInt(position);
         dbClass = new DbClass(this);
         dbReader=dbClass.getReadableDatabase();
+        //running cursor through query
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         c.moveToPosition(pos);
+        //getting all the fields required using cursor.getString();
         getName.setText(c.getString(0));
         getUserName.setText(c.getString(1));
         getMPin.setText(c.getString(2));
@@ -48,10 +52,10 @@ public class AccountDetails extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //disabling on back pressed
     }
 
-    void getDashboard(){
+    void getDashboard(){ //intent for dashboard
         Intent i=new Intent(this,Dashboard.class);
         i.putExtra("position",position);
         startActivity(i);

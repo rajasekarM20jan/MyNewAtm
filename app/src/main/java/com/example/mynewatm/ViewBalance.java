@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ViewBalance extends AppCompatActivity {
+    //variable initialization
     FloatingActionButton back;
     TextView displayBalance;
     ListView transactionList;
@@ -31,6 +32,7 @@ public class ViewBalance extends AppCompatActivity {
     String[] data={"name","userName","MPin","balance","login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //variable declarations
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_balance);
         back=findViewById(R.id.backInViewBalance);
@@ -45,16 +47,20 @@ public class ViewBalance extends AppCompatActivity {
         c.moveToPosition(pos);
         userName=c.getString(1);
         displayBalance.setText(c.getString(3));
+        //creating on click listener for floating
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDashboard();
+                getDashboard(); //calling method to go back to dashboard
             }
         });
+        //Using try catch for handling error throws
         try {
+            //getting value stored in the shared preferences.
             sp=getSharedPreferences("MyPref",MODE_PRIVATE);
             String nameOfUser= sp.getString("userName","");
             System.out.println("SharedPreferenceName: "+nameOfUser);
+            //using RawQuery to get all the data of transactions done for the particular user name.
             Cursor c2 = dbReader.rawQuery("SELECT * FROM Transactions WHERE userName =?",new String[]{nameOfUser});
             ArrayList list=new ArrayList<>();
             while (c2.moveToNext()) {
@@ -66,6 +72,7 @@ public class ViewBalance extends AppCompatActivity {
                     list.add(credit);
                 }
                 System.out.println("MyTransaction list : "+list);
+                //creating adapter for list to store arraylist data
                 ListAdapter adapter = new ArrayAdapter<>(ViewBalance.this, android.R.layout.simple_list_item_1, list);
                 transactionList.setAdapter(adapter);
             }
@@ -75,11 +82,11 @@ public class ViewBalance extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //disabling on back pressed
 
     }
 
-    void getDashboard(){
+    void getDashboard(){ // intent for dashboard page
         Intent i=new Intent(this,Dashboard.class);
         i.putExtra("position",position);
         startActivity(i);

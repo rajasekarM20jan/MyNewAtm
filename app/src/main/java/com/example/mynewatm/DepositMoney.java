@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DepositMoney extends AppCompatActivity {
+    //variable initialization
     FloatingActionButton back;
     EditText enterAmountInDeposit;
     Button buttonInDeposit;
@@ -33,6 +34,7 @@ public class DepositMoney extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposit_money);
         dbClass=new DbClass(this);
@@ -47,11 +49,12 @@ public class DepositMoney extends AppCompatActivity {
         position=a.getStringExtra("position");
         pos=Integer.parseInt(position);
         System.out.println("Received Position "+position);
+        //creating onclick listeners
         buttonInDeposit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(enterAmountInDeposit.length()!=0){
-                    getData();
+                    getData(); //calling method getData();
                 }else{
                     enterAmountInDeposit.setError(getString(R.string.enter_amt_first));
                 }
@@ -60,22 +63,23 @@ public class DepositMoney extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDashboard();
+                getDashboard(); // calling method getDashboard();
             }
         });
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { // disabling On back pressed
 
     }
 
-    void getDashboard(){
+    void getDashboard(){ // intent for dashboard
         Intent i=new Intent(this,Dashboard.class);
         i.putExtra("position",position);
         startActivity(i);
     }
     void getData(){
+        //creating this method for depositing the amount into user account details and also for transaction list of the user
         Date d=new Date();
         SimpleDateFormat s=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
@@ -85,6 +89,7 @@ public class DepositMoney extends AppCompatActivity {
         System.out.println("My name"+user);
         int availableBalance=Integer.parseInt(c.getString(3));
         String st=String.valueOf(enterAmountInDeposit.getText());
+        if(enterAmountInDeposit.length()!=0){
         int addAmount=Integer.parseInt(st);
             String newBalance=Integer.toString((availableBalance+addAmount));
             values.put("balance",newBalance);
@@ -106,5 +111,8 @@ public class DepositMoney extends AppCompatActivity {
                 enterAmountInDeposit.setText(null);
             }
         });a.show();
+        }else{
+            enterAmountInDeposit.setError(getString(R.string.enter_amt_first));
         }
+    }
 }

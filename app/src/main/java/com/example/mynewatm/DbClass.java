@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-public class DbClass extends SQLiteOpenHelper {
+public class DbClass extends SQLiteOpenHelper { //Database Creation class
 
 
     public DbClass(@Nullable Context context) {

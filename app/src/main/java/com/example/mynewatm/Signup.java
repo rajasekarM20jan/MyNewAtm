@@ -44,6 +44,7 @@ public class Signup extends AppCompatActivity {
                 getData();
             }
         });
+        //Creating link for Sign In
         linkForSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,20 +54,21 @@ public class Signup extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //Setting on back pressed as disabled
 
     }
 //Method for pushing data to the table
     void getData(){
+        // checking the data for all the inputs whether is empty or not
         if(signupName.length()!=0){
             if(userName.length()!=0){
                 if(signupPin.length()==6){
                     if(confirmPin.length()==6){
-                        if(String.valueOf(signupPin.getText()).equals(String.valueOf(confirmPin.getText()))){
+                        if(String.valueOf(signupPin.getText()).equals(String.valueOf(confirmPin.getText()))){ //checking if the username is already used or not
                             Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
                             boolean b=false;
                             while(c.moveToNext()){
-                                if (c.getString(1).equals(String.valueOf(userName.getText()))) {
+                                if (c.getString(1).equals(String.valueOf(userName.getText()))) { //if User name exists shows error with alert dialog
                                     AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
                                     a.setTitle(getString(R.string.oops));
                                     a.setMessage(getString(R.string.user_exists));
@@ -80,6 +82,7 @@ public class Signup extends AppCompatActivity {
                                     });a.show();
                                 }
                             }
+                            //if input fields are not empty
                             if(!b){
                                 dbWriter=dbClass.getWritableDatabase();
                                 values=new ContentValues();
