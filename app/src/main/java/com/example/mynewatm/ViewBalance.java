@@ -3,6 +3,7 @@ package com.example.mynewatm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class ViewBalance extends AppCompatActivity {
     TextView displayBalance;
     ListView transactionList;
     DbClass dbClass;
+    SharedPreferences sp;
     SQLiteDatabase dbReader;
     String position,userName;
     int pos;
@@ -50,7 +52,10 @@ public class ViewBalance extends AppCompatActivity {
             }
         });
         try {
-            Cursor c2 = dbReader.rawQuery("SELECT * FROM Transactions WHERE userName =?",new String[]{userName});
+            sp=getSharedPreferences("MyPref",MODE_PRIVATE);
+            String nameOfUser= sp.getString("userName","");
+            System.out.println("SharedPreferenceName: "+nameOfUser);
+            Cursor c2 = dbReader.rawQuery("SELECT * FROM Transactions WHERE userName =?",new String[]{nameOfUser});
             ArrayList list=new ArrayList<>();
             while (c2.moveToNext()) {
                 if(c2.getString(2).equals("false")){
@@ -71,7 +76,7 @@ public class ViewBalance extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
     }
 
     void getDashboard(){

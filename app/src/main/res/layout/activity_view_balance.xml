@@ -76,6 +76,7 @@
         android:id="@+id/transactionlist"
         android:layout_width="345dp"
         android:layout_height="386dp"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="@+id/view4"
         app:layout_constraintStart_toStartOf="@+id/view4"

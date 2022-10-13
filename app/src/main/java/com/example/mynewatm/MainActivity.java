@@ -2,25 +2,21 @@ package com.example.mynewatm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import controller.dbControllerMainActivity;
+
 public class MainActivity extends AppCompatActivity {
     //variable initialization
-    EditText etForUserName,etForMPin;
+    public EditText etForUserName;
+    public EditText etForMPin;
     Button mainPageButton;
     TextView linkForSignup;
-    DbClass dbClass;
-    SQLiteDatabase dbReader;
-    String position;
-    String[] data={"name","userName","MPin","balance","login"};
     protected void onCreate(Bundle savedInstanceState) {
         //variable declaration
         super.onCreate(savedInstanceState);
@@ -29,72 +25,58 @@ public class MainActivity extends AppCompatActivity {
         etForMPin=findViewById(R.id.etForMPin);
         mainPageButton=findViewById(R.id.mainPageButton);
         linkForSignup=findViewById(R.id.linkForSignup);
-        dbClass = new DbClass(this);
-        dbReader=dbClass.getReadableDatabase();
         linkForSignup.setClickable(true);
         //creating on click listener for required fields
-        linkForSignup.setOnClickListener(new View.OnClickListener() {
+        linkForSignup.setOnClickListener(new View.OnClickListener() { //Setting Onclick Listener for connecting with the signUp page.
             @Override
             public void onClick(View view) {
                 getSignUpPage();
             }
         });
-        mainPageButton.setOnClickListener(new View.OnClickListener() {
+        mainPageButton.setOnClickListener(new View.OnClickListener() {  //Setting onclick Listener for connecting with dashBoard Page
             @Override
             public void onClick(View view) {
                 if(etForUserName.length()!=0){
                     if(etForMPin.length()!=0){
-                        getData();
+                        getData1();
                     }else{
-                        etForMPin.setError(getString(R.string.empty_field));
+                        etForMPin.setError(getString(R.string.empty_field)); // Setting Error Message if MPin is Empty
                     }
                 }else{
-                    etForUserName.setError(getString(R.string.empty_field));
+                    etForUserName.setError(getString(R.string.empty_field)); //Setting error message if UserName is Empty
                 }
             }
         });
-
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed() { //Using On back Pressed for closing the application entirely with the help of finishAffinity();
 
         this.finishAffinity();
     }
-
+    //method for intending to signUp Page
     void getSignUpPage(){
         Intent i= new Intent(this,Signup.class);
         startActivity(i);
     }
-    //method for reading the data
-    void getData(){
-        Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-        String userName=String.valueOf(etForUserName.getText());
-        String mpin=String.valueOf(etForMPin.getText());
-        boolean b=false;
-        while(c.moveToNext()){
-            if (c.getString(1).equals(userName)) {
-                if(c.getString(2).equals(mpin)){
-                    position=String.valueOf(c.getPosition());
-                    System.out.println("UserN"+position);
-                    b=true;
-                    getDashboard();
-                    break;
-                }
-            }
-        }
-        if(!b){
-            etForUserName.setText(null);
-            etForMPin.setText(null);
-            etForUserName.setError("Invalid User Credentials");
-            etForMPin.setError("Invalid User Credentials");
-        }
-    }
     //method for intending to dashboard
-    void getDashboard(){
+    public void getDashboard(String position){
         Intent i=new Intent(this,Dashboard.class);
         i.putExtra("position",position);
         System.out.println("Sending Position is"+position);
         startActivity(i);
+    }
+    //method for defining the Error..
+    public void getError(){
+        etForUserName.setText(null);
+        etForMPin.setText(null);
+        etForUserName.setError("Invalid User Credentials");
+        etForMPin.setError("Invalid User Credentials");
+    }
+    //Calling the function of dbController for Main activity to perform the logical operations and get result according to the same.
+    void getData1(){
+        dbControllerMainActivity db=new dbControllerMainActivity();
+        db.loginActivity(MainActivity.this);
+        new dbControllerMainActivity(MainActivity.this);
     }
 }
