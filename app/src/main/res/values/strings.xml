@@ -40,4 +40,5 @@
     <string name="alreadyLoggedIn">Already Logged In!</string>
     <string name="alreadyLoggedInText">The Session is Expired. "\n\n"Please Click on OK for Re-initiating Login</string>
     <string name="listHeader">Transaction History</string>
+    <string name="enterValidAmount">Enter Valid Amount</string>
 </resources>

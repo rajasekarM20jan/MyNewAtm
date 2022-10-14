@@ -67,32 +67,37 @@ public class dbControllerDepositMoney {
         String st=String.valueOf(enterAmountInDeposit.getText());
         System.out.println("MyT"+st);
         if(enterAmountInDeposit.length()!=0){
-            int addAmount=Integer.parseInt(st);
-            String newBalance=Integer.toString((availableBalance+addAmount));
-            values=new ContentValues();
-            c.moveToPosition(pos);
-            values.put("balance",newBalance);
-            values.put("name",c.getString(0));
-            values.put("userName",c.getString(1));
-            values.put("MPin",c.getString(2));
-            values.put("login",c.getString(4));
-            dbWriter= dbClass.getWritableDatabase();
-            dbWriter.update("UserDetails",values,"userName=?",new String[]{user});
-            values1=new ContentValues();
-            values1.put("userName",c.getString(1));
-            values1.put("transactions",st+" On "+s.format(d));
-            values1.put("credit","true");
-            dbWriter=dbClass.getWritableDatabase();
-            dbWriter.insert("Transactions",null,values1);
-            AlertDialog.Builder a=new AlertDialog.Builder(userAccess);
-            a.setTitle(userAccess.getString(R.string.transactionSuccessful));
-            a.setMessage(userAccess.getString(R.string.creditMsg));
-            a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    enterAmountInDeposit.setText(null);
-                }
-            });a.show();
+            try {
+                int addAmount = Integer.parseInt(st);
+                String newBalance = Integer.toString((availableBalance + addAmount));
+                values = new ContentValues();
+                c.moveToPosition(pos);
+                values.put("balance", newBalance);
+                values.put("name", c.getString(0));
+                values.put("userName", c.getString(1));
+                values.put("MPin", c.getString(2));
+                values.put("login", c.getString(4));
+                dbWriter = dbClass.getWritableDatabase();
+                dbWriter.update("UserDetails", values, "userName=?", new String[]{user});
+                values1 = new ContentValues();
+                values1.put("userName", c.getString(1));
+                values1.put("transactions", st + " On " + s.format(d));
+                values1.put("credit", "true");
+                dbWriter = dbClass.getWritableDatabase();
+                dbWriter.insert("Transactions", null, values1);
+                AlertDialog.Builder a = new AlertDialog.Builder(userAccess);
+                a.setTitle(userAccess.getString(R.string.transactionSuccessful));
+                a.setMessage(userAccess.getString(R.string.creditMsg));
+                a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        enterAmountInDeposit.setText(null);
+                    }
+                });
+                a.show();
+            }catch (Exception e){
+                enterAmountInDeposit.setError(userAccess.getString(R.string.enterValidAmount));
+            }
         }else{
             enterAmountInDeposit.setError(userAccess.getString(R.string.enterAmtFirst));
         }
