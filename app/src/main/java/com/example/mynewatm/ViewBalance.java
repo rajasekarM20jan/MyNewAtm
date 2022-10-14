@@ -2,6 +2,7 @@ package com.example.mynewatm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -74,7 +75,7 @@ public class ViewBalance extends AppCompatActivity {
                 }
                 System.out.println("MyTransaction list : "+list);
                 //creating adapter for list to store arraylist data
-                ListAdapter adapter = new ArrayAdapter<>(ViewBalance.this, android.R.layout.simple_list_item_1, list);
+                ListAdapter adapter = new ArrayAdapter<>(ViewBalance.this, android.R.layout.simple_list_item_1,list);
                 transactionList.setAdapter(adapter);
             }
         }catch (Exception e){
