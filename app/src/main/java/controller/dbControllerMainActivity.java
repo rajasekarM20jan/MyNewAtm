@@ -15,6 +15,10 @@ import com.example.mynewatm.DbClass;
 import com.example.mynewatm.MainActivity;
 import com.example.mynewatm.R;
 
+import java.util.ArrayList;
+
+import model.UserDetailsDB;
+
 public class dbControllerMainActivity {
     DbClass dbClass;
     SQLiteDatabase dbReader,dbWriter;
@@ -50,11 +54,11 @@ public class dbControllerMainActivity {
         String userName=String.valueOf(UserVerification.etForUserName.getText());
         String mpin=String.valueOf(UserVerification.etForMPin.getText());
         sp= UserVerification.getSharedPreferences("MyPref",MODE_PRIVATE);
-        edit= sp.edit();
         boolean b=false;
         while(c.moveToNext()){ //checks with the database if user name and pin are existing
             if (c.getString(1).equals(userName)) {
                 if(c.getString(2).equals(mpin)){
+                    edit= sp.edit();
                     edit.putString("userName",userName);
                     edit.commit();
                     b=true;

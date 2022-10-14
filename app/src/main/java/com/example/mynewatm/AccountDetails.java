@@ -11,6 +11,10 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
+import model.UserDetailsDB;
+
 public class AccountDetails extends AppCompatActivity {
     //variable initialization
     FloatingActionButton backButton;
@@ -19,6 +23,7 @@ public class AccountDetails extends AppCompatActivity {
     SQLiteDatabase dbReader;
     String position;
     int pos;
+    ArrayList<UserDetailsDB> arr=new ArrayList<>();
     String[] data={"name","userName","MPin","balance","login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +43,13 @@ public class AccountDetails extends AppCompatActivity {
         //running cursor through query
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         c.moveToPosition(pos);
-        //getting all the fields required using cursor.getString();
-        getName.setText(c.getString(0));
-        getUserName.setText(c.getString(1));
-        getMPin.setText(c.getString(2));
-        getBalance.setText(c.getString(3));
+        System.out.println("User Name is in "+pos);
+        //getting all the fields required using cursor.getString(); and storing it with Model Class
+        arr.add(new UserDetailsDB(c.getString(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4)));
+        getName.setText(arr.get(0).getName());
+        getUserName.setText(arr.get(0).getUserName());
+        getMPin.setText(arr.get(0).getMPin());
+        getBalance.setText(arr.get(0).getBalance());
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

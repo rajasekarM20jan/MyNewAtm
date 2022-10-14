@@ -39,4 +39,5 @@
     <string name="nameSignup">Enter Name</string>
     <string name="alreadyLoggedIn">Already Logged In!</string>
     <string name="alreadyLoggedInText">The Session is Expired. "\n\n"Please Click on OK for Login</string>
+    <string name="listHeader">Transaction History</string>
 </resources>

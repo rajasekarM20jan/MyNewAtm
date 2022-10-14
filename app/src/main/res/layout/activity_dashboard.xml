@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/white"
     tools:context=".Dashboard">
 
     <View
@@ -73,7 +73,7 @@
             android:id="@+id/view5"
             android:layout_width="321dp"
             android:layout_height="125dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/linearbg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

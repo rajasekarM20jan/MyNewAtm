@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/white"
     tools:context=".ViewBalance">
     <View
         android:id="@+id/view2"
@@ -41,8 +41,8 @@
 
     <View
         android:id="@+id/view3"
-        android:layout_width="359dp"
-        android:layout_height="148dp"
+        android:layout_width="352dp"
+        android:layout_height="112dp"
         android:layout_margin="30dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/linearbg"
@@ -52,9 +52,11 @@
 
     <View
         android:id="@+id/view4"
-        android:layout_width="362dp"
+        android:layout_width="350dp"
         android:layout_height="416dp"
-        android:layout_margin="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/linearbg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,5 +92,17 @@
         app:layout_constraintEnd_toEndOf="@+id/view3"
         app:layout_constraintStart_toStartOf="@+id/view3"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/listHeader"
+        style="@style/ViewBalance_Text"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

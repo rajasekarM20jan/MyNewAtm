@@ -1,8 +1,10 @@
 package controller;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
@@ -54,13 +56,13 @@ public class dbControllerDepositMoney {
         enterAmountInDeposit=userAccess.findViewById(R.id.enterAmountInDeposit);
         //creating this method for depositing the amount into user account details and also for transaction list of the user
         Date d=new Date();
+        SharedPreferences sp= depositMoney.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        String user= sp.getString("userName","no");
         dbReader=dbClass.getReadableDatabase();
         SimpleDateFormat s=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
-        Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-        c.moveToPosition(pos);
-        System.out.println("Converted pos"+pos);
-        String user=c.getString(1);
-        System.out.println("My name"+user);
+        Cursor c= dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{user});
+        c.moveToNext();
+        System.out.println("User Name is"+user);
         int availableBalance=Integer.parseInt(c.getString(3));
         String st=String.valueOf(enterAmountInDeposit.getText());
         System.out.println("MyT"+st);

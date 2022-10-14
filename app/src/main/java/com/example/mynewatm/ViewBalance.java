@@ -64,6 +64,7 @@ public class ViewBalance extends AppCompatActivity {
             Cursor c2 = dbReader.rawQuery("SELECT * FROM Transactions WHERE userName =?",new String[]{nameOfUser});
             ArrayList list=new ArrayList<>();
             while (c2.moveToNext()) {
+                System.out.println("My Position:"+c2.getPosition());
                 if(c2.getString(2).equals("false")){
                     String debit="Debited : "+c2.getString(1);
                     list.add(debit);
