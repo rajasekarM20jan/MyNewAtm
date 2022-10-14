@@ -102,11 +102,13 @@ public class SendMoney extends AppCompatActivity {
                 dbWriter.insert("Transactions", null, values1);
                 AlertDialog.Builder a = new AlertDialog.Builder(SendMoney.this);
                 a.setTitle(getString(R.string.transactionSuccessful));
-                a.setMessage(getString(R.string.debitMsg));
+                a.setMessage(getString(R.string.debitMsg)+newBalance);
+                a.setCancelable(false);
                 a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         enterAmountInSendMoney.setText(null);
+                        dialogInterface.cancel();
                     }
                 });
                 a.show();

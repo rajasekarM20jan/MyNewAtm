@@ -49,7 +49,7 @@ public class AccountDetails extends AppCompatActivity {
         getName.setText(arr.get(0).getName());
         getUserName.setText(arr.get(0).getUserName());
         getMPin.setText(arr.get(0).getMPin());
-        getBalance.setText(arr.get(0).getBalance());
+        getBalance.setText("₹ "+arr.get(0).getBalance());
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

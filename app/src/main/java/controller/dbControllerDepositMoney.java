@@ -87,11 +87,13 @@ public class dbControllerDepositMoney {
                 dbWriter.insert("Transactions", null, values1);
                 AlertDialog.Builder a = new AlertDialog.Builder(userAccess);
                 a.setTitle(userAccess.getString(R.string.transactionSuccessful));
-                a.setMessage(userAccess.getString(R.string.creditMsg));
+                a.setMessage(userAccess.getString(R.string.creditMsg)+newBalance);
+                a.setCancelable(false);
                 a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         enterAmountInDeposit.setText(null);
+                        dialogInterface.cancel();
                     }
                 });
                 a.show();

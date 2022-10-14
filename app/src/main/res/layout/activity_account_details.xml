@@ -79,7 +79,7 @@
     <TextView
         android:id="@+id/textView5"
         style="@style/acdetailsusername"
-        android:layout_width="130dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="48dp"
@@ -110,10 +110,11 @@
 
     <TextView
         android:id="@+id/getName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -123,10 +124,11 @@
 
     <TextView
         android:id="@+id/getUserName"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="47dp"
         android:textSize="18sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/view6"
@@ -135,11 +137,12 @@
         app:layout_constraintTop_toBottomOf="@+id/getName" />
     <TextView
         android:id="@+id/getMpin"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="47dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintHorizontal_bias="0.492"
@@ -147,11 +150,12 @@
         app:layout_constraintTop_toBottomOf="@+id/getUserName" />
     <TextView
         android:id="@+id/getBalance"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="49dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="@+id/view6"
         app:layout_constraintHorizontal_bias="0.492"
