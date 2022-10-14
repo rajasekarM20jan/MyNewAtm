@@ -23,12 +23,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:backgroundTint="#ffffff"
-        android:layout_margin="15dp"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="@color/lightBlue"
         app:srcCompat="?attr/actionModeCloseDrawable"
-        tools:ignore="ContentDescription" />
+        app:tint="@color/white"
+        tools:ignore="ContentDescription"
+        />
 
     <TextView
         android:id="@+id/textView3"
