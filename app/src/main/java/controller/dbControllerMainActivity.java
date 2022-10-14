@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import model.UserDetailsDB;
 
 public class dbControllerMainActivity {
+    //variable declaration
     DbClass dbClass;
     SQLiteDatabase dbReader,dbWriter;
     ContentValues values;
