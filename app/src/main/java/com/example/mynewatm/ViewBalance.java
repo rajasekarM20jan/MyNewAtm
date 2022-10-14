@@ -55,6 +55,7 @@ public class ViewBalance extends AppCompatActivity {
                 getDashboard(); //calling method to go back to dashboard
             }
         });
+
         //Using try catch for handling error throws
         try {
             //getting value stored in the shared preferences.

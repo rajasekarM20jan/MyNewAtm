@@ -36,6 +36,8 @@ public class dbControllerDepositMoney {
     public dbControllerDepositMoney(){
 
     }
+
+    //
     public dbControllerDepositMoney(DepositMoney depositMoney){
         this.userAccess=depositMoney;
         dbClass=new DbClass(userAccess);
@@ -50,6 +52,8 @@ public class dbControllerDepositMoney {
         position=a.getStringExtra("position");
         pos=Integer.parseInt(position);
     }
+
+    //
     public void deposit(DepositMoney depositMoney){
         this.userAccess=depositMoney;
         dbClass=new DbClass(userAccess);

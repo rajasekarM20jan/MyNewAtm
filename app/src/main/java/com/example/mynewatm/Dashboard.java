@@ -48,7 +48,7 @@ public class Dashboard extends AppCompatActivity {
         depositMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getdepositPage(); //gets method to call deposit money page
+                getDepositPage(); //gets method to call deposit money page
             }
         });
         viewBalance.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class Dashboard extends AppCompatActivity {
         System.out.println("Sending Position is"+position);
         startActivity(i);
     }
-    void getdepositPage(){ // intent for deposit money page
+    void getDepositPage(){ // intent for deposit money page
         Intent i=new Intent(this,DepositMoney.class);
         i.putExtra("position",position);
         System.out.println("Sending Position is"+position);

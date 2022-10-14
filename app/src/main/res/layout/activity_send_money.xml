@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="@string/royalBank"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/backInSend"
@@ -33,13 +34,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/lightBlue"
         android:clickable="true"
         android:soundEffectsEnabled="false"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        app:tint="@color/white"
+        />
 
     <View
         android:id="@+id/view6"

@@ -20,13 +20,16 @@
         android:id="@+id/textView8"
         style="@style/mainText"
         android:text="@string/royalBank"
+        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="@+id/view2"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="@+id/backInDeposit"
-        app:layout_constraintTop_toTopOf="@+id/view2" />
+        app:layout_constraintTop_toTopOf="@+id/view2"
+
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/backInDeposit"
@@ -34,11 +37,13 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_margin="12dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/lightBlue"
         app:layout_constraintStart_toStartOf="@+id/view2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        app:tint="@color/white"
+        />
 
     <View
         android:id="@+id/view6"

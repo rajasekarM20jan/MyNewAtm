@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:id="@+id/view"
-        android:background="@drawable/top_for_dashboard"
+        android:background="@color/lightBlue"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,9 +25,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:text="@string/royalBank"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/logout"
@@ -35,13 +37,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/lightBlue"
         android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_lock_power_off" />
+        app:srcCompat="@android:drawable/ic_lock_power_off"
+        app:tint="@color/white"
+        />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/accountDetails"
@@ -49,13 +53,15 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/lightBlue"
         android:clickable="true"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/person" />
+        app:srcCompat="@drawable/person"
+        app:tint="@color/white"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="377dp"

@@ -46,6 +46,7 @@ public class dbControllerMainActivity {
         edit= sp.edit();
         linkForSignup.setClickable(true);
     }
+
     //creating method for verification in login
     public void loginActivity(MainActivity mainActivity){
         this.UserVerification =mainActivity;
@@ -53,12 +54,12 @@ public class dbControllerMainActivity {
         dbReader=dbClass.getReadableDatabase();
         Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
         String userName=String.valueOf(UserVerification.etForUserName.getText());
-        String mpin=String.valueOf(UserVerification.etForMPin.getText());
+        String mPin=String.valueOf(UserVerification.etForMPin.getText());
         sp= UserVerification.getSharedPreferences("MyPref",MODE_PRIVATE);
         boolean b=false;
         while(c.moveToNext()){ //checks with the database if user name and pin are existing
             if (c.getString(1).equals(userName)) {
-                if(c.getString(2).equals(mpin)){
+                if(c.getString(2).equals(mPin)){
                     edit= sp.edit();
                     edit.putString("userName",userName);
                     edit.commit();

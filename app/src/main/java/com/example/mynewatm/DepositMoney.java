@@ -50,6 +50,7 @@ public class DepositMoney extends AppCompatActivity {
         position=a.getStringExtra("position");
         pos=Integer.parseInt(position);
         System.out.println("Received Position "+position);
+
         //creating onclick listeners
         buttonInDeposit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +62,7 @@ public class DepositMoney extends AppCompatActivity {
                 }
             }
         });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
