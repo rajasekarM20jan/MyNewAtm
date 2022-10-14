@@ -14,10 +14,10 @@
     <string name="depositMoney">Deposit Money</string>
     <string name="viewBalance">View Balance</string>
     <string name="userDetails">User Details</string>
-    <string name="name">Name</string>
-    <string name="UserName">User Name</string>
-    <string name="mPin">MPin</string>
-    <string name="balance">Balance</string>
+    <string name="name">Name           :</string>
+    <string name="UserName">User Name  :</string>
+    <string name="mPin">MPin           :</string>
+    <string name="balance">Balance     :</string>
     <string name="enterAmount">Enter Amount Here</string>
     <string name="submit">Submit</string>
     <string name="balanceIs">Your Balance is :</string>

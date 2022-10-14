@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/linearbg"
+        android:background="@color/white"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="175dp"
         tools:ignore="MissingConstraints">
@@ -41,6 +41,7 @@
             android:id="@+id/etForUserName"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/linearbg"
             style="@style/EditTextForUserName"
             android:hint="@string/enterUsername"
             android:layout_marginTop="50dp"
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             style="@style/EditTextForPin"
             android:hint="@string/enterMPin"
+            android:background="@drawable/linearbg"
             android:layout_marginTop="50dp"
             android:ems="10"
             android:inputType="numberPassword"
@@ -66,11 +68,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:background="@drawable/buttonbg"
-            android:fontFamily="@font/new_rocker"
             android:inputType="number" />
         <TextView
             android:id="@+id/linkForSignup"
             android:layout_width="match_parent"
+            android:textStyle="italic"
             style="@style/newUser"
             android:text="@string/newUser"
             android:layout_height="wrap_content"
