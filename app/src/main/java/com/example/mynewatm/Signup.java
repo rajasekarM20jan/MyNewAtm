@@ -62,7 +62,7 @@ void getData1(){
     // checking the data for all the inputs whether is empty or not
     if(signupName.length()==0){
         result=0;
-        getResult();
+        getResult(); // passing the value for result to the getResult() method
     }
     if(userName.length()==0){
         result=1;
@@ -75,7 +75,7 @@ void getData1(){
     if(String.valueOf(signupPin.getText()).equals(String.valueOf(confirmPin.getText()))){
         result=3;
         getResult();
-    }else{
+    }else{ //if MPin and confirmation MPin are not same, showing the alert dialog
         AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
         a.setTitle(getString(R.string.oops));
         a.setMessage(getString(R.string.mPinMismatch));
@@ -109,6 +109,7 @@ void getData1(){
                 Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
                 boolean b=false;
                 while(c.moveToNext()){
+                    //moves into the entire table to check whether the user name is taken or not
                     if (c.getString(1).equals(String.valueOf(userName.getText()))) { //if User name exists shows error with alert dialog
                         AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
                         a.setTitle(getString(R.string.oops));
@@ -123,7 +124,7 @@ void getData1(){
                         });a.show();
                     }
                 }
-                //if input fields are not empty
+                //if user name is not already taken
                 if(!b){
                     dbWriter=dbClass.getWritableDatabase();
                     values=new ContentValues();
@@ -139,6 +140,7 @@ void getData1(){
                 break;
 
             }
+            //this default is just for the sake of no runtime error (However the code won't travel to this unless any changes with the value)
             default:{
                 signupName.setError(getString(R.string.emptyField));
                 userName.setError(getString(R.string.emptyField));
