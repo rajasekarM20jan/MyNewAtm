@@ -22,6 +22,7 @@ public class Signup extends AppCompatActivity {
     TextView linkForSignIn;
     ContentValues values;
     DbClass dbClass;
+    int result;
     SQLiteDatabase dbWriter,dbReader;
     String[] data={"name","userName","MPin","balance","login"};
     @Override
@@ -41,7 +42,7 @@ public class Signup extends AppCompatActivity {
         signupPageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getData();
+                getData1();
             }
         });
         //Creating link for Sign In
@@ -57,66 +58,94 @@ public class Signup extends AppCompatActivity {
     public void onBackPressed() { //Setting on back pressed as disabled
 
     }
-//Method for pushing data to the table
-    void getData(){
-        // checking the data for all the inputs whether is empty or not
-        if(signupName.length()!=0){
-            if(userName.length()!=0){
-                if(signupPin.length()==6){
-                    if(confirmPin.length()==6){
-                        if(String.valueOf(signupPin.getText()).equals(String.valueOf(confirmPin.getText()))){ //checking if the username is already used or not
-                            Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-                            boolean b=false;
-                            while(c.moveToNext()){
-                                if (c.getString(1).equals(String.valueOf(userName.getText()))) { //if User name exists shows error with alert dialog
-                                    AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
-                                    a.setTitle(getString(R.string.oops));
-                                    a.setMessage(getString(R.string.userExists));
-                                    a.setCancelable(false);
-                                    b=true;
-                                    a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            dialogInterface.cancel();
-                                        }
-                                    });a.show();
-                                }
-                            }
-                            //if input fields are not empty
-                            if(!b){
-                                dbWriter=dbClass.getWritableDatabase();
-                                values=new ContentValues();
-                                values.put("name",String.valueOf(signupName.getText()));
-                                values.put("userName",String.valueOf(userName.getText()));
-                                values.put("MPin",String.valueOf(signupPin.getText()));
-                                values.put("balance","1000");
-                                values.put("login","false");
-                                dbWriter.insert("UserDetails",null,values);
-                                Toast.makeText(this, "Signed Up Successfully", Toast.LENGTH_SHORT).show();
-                                getLoginPage();
-                            }
-                        }else{
-                            AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
-                            a.setTitle(getString(R.string.oops));
-                            a.setMessage(getString(R.string.mPinMismatch));
-                            a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+void getData1(){
+    // checking the data for all the inputs whether is empty or not
+    if(signupName.length()==0){
+        result=0;
+        getResult();
+    }
+    if(userName.length()==0){
+        result=1;
+        getResult();
+    }
+    if(signupPin.length()!=6&&confirmPin.length()!=6){
+        result=2;
+        getResult();
+    }
+    if(String.valueOf(signupPin.getText()).equals(String.valueOf(confirmPin.getText()))){
+        result=3;
+        getResult();
+    }else{
+        AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
+        a.setTitle(getString(R.string.oops));
+        a.setMessage(getString(R.string.mPinMismatch));
+        a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
-                                }
-                            });a.show();
-                        }
-                    }else{
-                        confirmPin.setError(getString(R.string.emptyField));
-                    }
-                }else {
-                    signupPin.setError(getString(R.string.emptyField));
-                }
-            }else{
-                userName.setError(getString(R.string.emptyField));
             }
-        }else{
-            signupName.setError(getString(R.string.emptyField));
+        });a.show();
+    }
+    getResult();
+}
+//Checking with the result from get data
+    //Method for pushing data to the table
+    void getResult(){
+        switch (result){
+            case 0:{
+                signupName.setError(getString(R.string.emptyField));
+                break;
+            }
+            case 1:{
+                userName.setError(getString(R.string.emptyField));
+                break;
+            }
+            case 2:{
+                signupPin.setError(getString(R.string.emptyField));
+                confirmPin.setError(getString(R.string.emptyField));
+                break;
+            }
+            case 3:{
+                Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
+                boolean b=false;
+                while(c.moveToNext()){
+                    if (c.getString(1).equals(String.valueOf(userName.getText()))) { //if User name exists shows error with alert dialog
+                        AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
+                        a.setTitle(getString(R.string.oops));
+                        a.setMessage(getString(R.string.userExists));
+                        a.setCancelable(false);
+                        b=true;
+                        a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });a.show();
+                    }
+                }
+                //if input fields are not empty
+                if(!b){
+                    dbWriter=dbClass.getWritableDatabase();
+                    values=new ContentValues();
+                    values.put("name",String.valueOf(signupName.getText()));
+                    values.put("userName",String.valueOf(userName.getText()));
+                    values.put("MPin",String.valueOf(signupPin.getText()));
+                    values.put("balance","1000");
+                    values.put("login","false");
+                    dbWriter.insert("UserDetails",null,values);
+                    Toast.makeText(this, "Signed Up Successfully", Toast.LENGTH_SHORT).show();
+                    getLoginPage();
+                }
+                break;
+
+            }
+            default:{
+                signupName.setError(getString(R.string.emptyField));
+                userName.setError(getString(R.string.emptyField));
+                signupPin.setError(getString(R.string.emptyField));
+                confirmPin.setError(getString(R.string.emptyField));
+                break;
+            }
         }
     }
     //Method for intending to login page
@@ -124,4 +153,45 @@ public class Signup extends AppCompatActivity {
         Intent i= new Intent(this,MainActivity.class);
         startActivity(i);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
