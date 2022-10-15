@@ -58,23 +58,27 @@ public class Signup extends AppCompatActivity {
     public void onBackPressed() { //Setting on back pressed as disabled
 
     }
-void getData1(){
+int getData1(){
     // checking the data for all the inputs whether is empty or not
     if(signupName.length()==0){
         result=0;
         getResult(); // passing the value for result to the getResult() method
+        return result;
     }
     if(userName.length()==0){
         result=1;
         getResult();
+        return result;
     }
     if(signupPin.length()!=6&&confirmPin.length()!=6){
         result=2;
         getResult();
+        return result;
     }
     if(String.valueOf(signupPin.getText()).equals(String.valueOf(confirmPin.getText()))){
         result=3;
         getResult();
+        return result;
     }else{ //if MPin and confirmation MPin are not same, showing the alert dialog
         AlertDialog.Builder a=new AlertDialog.Builder(Signup.this);
         a.setTitle(getString(R.string.oops));
@@ -86,7 +90,7 @@ void getData1(){
             }
         });a.show();
     }
-    getResult();
+    return result;
 }
 //Checking with the result from get data
     //Method for pushing data to the table
