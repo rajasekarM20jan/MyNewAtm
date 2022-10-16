@@ -13,14 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import controller.dbControllerMainActivity;
-
 public class MainActivity extends AppCompatActivity {
     //variable initialization
     public EditText etForUserName;
     public EditText etForMPin;
     Button mainPageButton;
     TextView linkForSignup;
+    DbClass dbclass;
     protected void onCreate(Bundle savedInstanceState) {
         //variable declaration
         super.onCreate(savedInstanceState);
@@ -42,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(etForUserName.length()!=0){
                     if(etForMPin.length()!=0){
-                        getData1();
+                        dbclass=new DbClass(MainActivity.this);
+                        dbclass.getDataForLogin(String.valueOf(etForUserName.getText()),String.valueOf(etForMPin.getText()));
                     }else{
                         etForMPin.setError(getString(R.string.emptyField)); // Setting Error Message if MPin is Empty
                     }
@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
         etForUserName.setError("Invalid User Credentials");
         etForMPin.setError("Invalid User Credentials");
     }
-    //Calling the function of dbController for Main activity to perform the logical operations and get result according to the same.
+    /*//Calling the function of dbController for Main activity to perform the logical operations and get result according to the same.
     void getData1(){
         dbControllerMainActivity db=new dbControllerMainActivity();
         db.loginActivity(MainActivity.this);
         new dbControllerMainActivity(MainActivity.this);
-    }
+    }*/
     public void alreadyLoggedIn(String name,String userName,String MPin,String balance,String login){
         AlertDialog.Builder alert= new AlertDialog.Builder(this);
         alert.setTitle(R.string.alreadyLoggedIn);
@@ -104,4 +104,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });alert.show();
     }
+
+
+    public void sendToDbClass(String name,String userName,String MPin,String balance,String login){
+        System.out.println("MyTr"+name+userName+MPin+balance+login);
+        dbclass=new DbClass(MainActivity.this);
+        dbclass.updateData(name,userName,MPin,balance,login);
+    }
+
+
+
 }

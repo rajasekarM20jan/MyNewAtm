@@ -21,7 +21,7 @@ import model.UserDetailsDB;
 
 public class dbControllerMainActivity {
     //variable declaration
-    DbClass dbClass;
+    /*DbClass dbClass;
     SQLiteDatabase dbReader,dbWriter;
     ContentValues values;
     String[] data={"name","userName","MPin","balance","login"};
@@ -92,6 +92,22 @@ public class dbControllerMainActivity {
         }
         if(!b){ //if user is not existing it is passed to get Error method of main activity.
            UserVerification.getError();
+        }
+    }
+*/
+    public void verification(String etName,String etPin,String cName,String cUserName,String cMPin,String cBalance,String cLogin,String position){
+        MainActivity m=new MainActivity();
+        if(etName.equals(cUserName)){
+            if(etPin.equals(cMPin)){
+                if(cLogin.equals("false")){
+                    m.sendToDbClass(cName,cUserName,cMPin,cBalance,"true");
+                    m.getDashboard(position);
+                }else{
+                    m.alreadyLoggedIn(cName,cUserName,cMPin,cBalance,cLogin);
+                }
+            }
+        }else{
+            m.getError();
         }
     }
 }
