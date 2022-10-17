@@ -2,6 +2,7 @@ package com.example.mynewatm;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -18,6 +19,7 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
     String name,userName,MPin,balance,login;
     SQLiteDatabase dbReader, dbWriter;
     Cursor c;
+    String result;
     ContentValues values;
 
     public DbClass(@Nullable Context context) {
@@ -38,32 +40,82 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
 
     public void getDataForLogin(String username, String pin){
         dbReader=this.getReadableDatabase();
-        c=dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{username});
-        c.moveToFirst();
-        if(c.getString(1).equals(username)){
-            if (c.getString(2).equals(pin)){
-                name=c.getString(0);
-                userName=c.getString(1);
-                MPin=c.getString(2);
-                balance=c.getString(3);
-                login=c.getString(4);
+        try{
+            c=dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{username});
+            c.moveToNext();
+            if(c.getString(1).equals(username)){
+                if (c.getString(2).equals(pin)){
+                    name=c.getString(0);
+                    userName=c.getString(1);
+                    MPin=c.getString(2);
+                    balance=c.getString(3);
+                    login=c.getString(4);
+                    result="pass";
+                }
             }
+        }catch(Exception e){
+            result="fail";
         }
+
     }
-//    Error Area
-//    Gives ERROR as  java.lang.NullPointerException: Attempt to invoke virtual method ...
-//    .. 'java.io.File android.content.Context.getDatabasePath(java.lang.String)' on a null object reference.
-    /*public void updateData(String name,String userName,String MPin,String balance,String login){
-        System.out.println("MYTransaction"+name+userName+MPin+balance+login);
+    public void updateLoginStatus(String userName,String login){
+        dbReader=this.getReadableDatabase();
+        System.out.println("MyUserName"+userName);
+        c=dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{userName});
+        c.moveToNext();
+        name=c.getString(0);
+        this.userName=c.getString(1);
+        MPin=c.getString(2);
+        balance=c.getString(3);
+        this.login=login;
         dbWriter=this.getWritableDatabase();
-        // _____________Above line gives error
-        values = new ContentValues();
+        values=new ContentValues();
+        values.put("name",name);
+        values.put("userName",this.userName);
+        values.put("MPin",MPin);
+        values.put("balance",balance);
+        values.put("login",this.login);
+        dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
+    }
+
+    public void updateData(String name,String userName,String MPin,String balance,String login){
+        dbReader=this.getReadableDatabase();
+        System.out.println("MyUserName   :@#"+userName);
+        c=dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{userName});
+        c.moveToNext();
+        this.name=c.getString(0);
+        this.userName=c.getString(1);
+        this.MPin=c.getString(2);
+        this.balance=c.getString(3);
+        this.login=c.getString(4);
+        dbWriter=this.getWritableDatabase();
+        System.out.println("MyUserName Success");
+        values=new ContentValues();
         values.put("name",name);
         values.put("userName",userName);
         values.put("MPin",MPin);
         values.put("balance",balance);
         values.put("login",login);
-        System.out.println("MyTr"+values.get(name));
         dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
-    }*/
+        System.out.println("MyUserName Success");
+    }
+    public void getData(String userName){
+        dbReader=this.getReadableDatabase();
+        System.out.println("MyUserName  :   1 "+userName);
+        c=dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{userName});
+        c.moveToNext();
+        name=c.getString(0);
+        this.userName=c.getString(1);
+        MPin=c.getString(2);
+        balance=c.getString(3);
+        login=c.getString(4);
+    }
+    public void updateTransactions(String userName,String transaction,String credit){
+        dbWriter=this.getWritableDatabase();
+        values=new ContentValues();
+        values.put("userName",userName);
+        values.put("transactions",transaction);
+        values.put("credit",credit);
+        dbWriter.insert("Transactions",null,values);
+    }
 }

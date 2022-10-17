@@ -3,6 +3,7 @@ package com.example.mynewatm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,8 +22,6 @@ public class AccountDetails extends AppCompatActivity {
     TextView getName,getUserName,getMPin,getBalance;
     DbClass dbClass;
     SQLiteDatabase dbReader;
-    String position;
-    int pos;
     ArrayList<UserDetailsDB> arr=new ArrayList<>();
     String[] data={"name","userName","MPin","balance","login"};
     @Override
@@ -35,17 +34,13 @@ public class AccountDetails extends AppCompatActivity {
         getUserName=findViewById(R.id.getUserName);
         getMPin=findViewById(R.id.getMpin);
         getBalance=findViewById(R.id.getBalance);
-        Intent a=getIntent();
-        position=a.getStringExtra("position");
-        pos=Integer.parseInt(position);
         dbClass = new DbClass(this);
         dbReader=dbClass.getReadableDatabase();
-        //running cursor through query
-        Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-        c.moveToPosition(pos);
-        System.out.println("User Name is in "+pos);
-        //getting all the fields required using cursor.getString(); and storing it with Model Class
-        arr.add(new UserDetailsDB(c.getString(0),c.getString(1),c.getString(2),c.getString(3),c.getString(4)));
+        SharedPreferences sp=getSharedPreferences("MyPref",MODE_PRIVATE);
+        String a=sp.getString("userName","no");
+        DbClass dbClass=new DbClass(AccountDetails.this);
+        dbClass.getData(a);
+        arr.add(new UserDetailsDB(dbClass.name,dbClass.userName,dbClass.MPin,dbClass.balance,dbClass.login));
         getName.setText(arr.get(0).getName());
         getUserName.setText(arr.get(0).getUserName());
         getMPin.setText(arr.get(0).getMPin());
@@ -64,7 +59,6 @@ public class AccountDetails extends AppCompatActivity {
 
     void getDashboard(){ //intent for dashboard
         Intent i=new Intent(this,Dashboard.class);
-        i.putExtra("position",position);
         startActivity(i);
     }
 }

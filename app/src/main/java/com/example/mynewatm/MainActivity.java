@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -54,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
                         if(etForMPin.length()!=0){
 
-                        /*getFromDb();*/
-                         getData1();
+                        getFromDb();
+                         /*getData1();*/
                         }else{
                             etForMPin.setError(getString(R.string.emptyField)); // Setting Error Message if MPin is Empty
                         }
@@ -80,10 +81,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
     //method for intending to dashboard
-    public void getDashboard(String position){
+    public void getDashboard(){
+        SharedPreferences sp = getSharedPreferences("MyPref",MODE_PRIVATE);
+        String a=sp.getString("userName","no");
+        dbclass=new DbClass(MainActivity.this);
+        dbclass.updateLoginStatus(a,"true");
         Intent i=new Intent(this,Dashboard.class);
-        i.putExtra("position",position);
-        System.out.println("Sending Position is"+position);
         startActivity(i);
     }
     //method for defining the Error..
@@ -121,18 +124,23 @@ public class MainActivity extends AppCompatActivity {
         });alert.show();
     }
 
-
+    //-----------
     public void getFromDb(){
         dbclass=new DbClass(MainActivity.this);
         dbclass.getDataForLogin(String.valueOf(etForUserName.getText()),String.valueOf(etForMPin.getText()));
-        String name=dbclass.name;
-        String userName=dbclass.userName;
-        String MPin=dbclass.MPin;
-        String balance=dbclass.balance;
-        String login=dbclass.login;
-        dbControllerMainActivity d=new dbControllerMainActivity(MainActivity.this);
-        System.out.println("MYTransaction"+name+userName+MPin+balance+login);
-        d.getFromDb(MainActivity.this,name,userName,MPin,balance,login);
+        if(dbclass.result.equals("pass")){
+            String name=dbclass.name;
+            String userName=dbclass.userName;
+            String MPin=dbclass.MPin;
+            String balance=dbclass.balance;
+            String login=dbclass.login;
+            dbControllerMainActivity d=new dbControllerMainActivity(MainActivity.this);
+            System.out.println("MYTransaction"+name+userName+MPin+balance+login);
+            d.getFromDb(MainActivity.this,name,userName,MPin,balance,login);
+        }else{
+            getError();
+        }
+
     }
 
 

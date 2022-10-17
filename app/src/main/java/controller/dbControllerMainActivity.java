@@ -83,7 +83,7 @@ public class dbControllerMainActivity {
                         values.put("balance",balance);
                         values.put("MPin",MPin);
                         dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
-                        UserVerification.getDashboard(position);
+                        UserVerification.getDashboard();
                         break;
                     }else{
                         UserVerification.alreadyLoggedIn(name,this.userName,MPin,balance,login);
@@ -99,9 +99,15 @@ public class dbControllerMainActivity {
     public void getFromDb(MainActivity mainActivity,String cname,String cUserName,String cMPin,String cBalance,String cLogin){
         this.UserVerification=mainActivity;
         if(cLogin.equals("false")){
-            UserVerification.getDashboard("0");
+            sp= UserVerification.getSharedPreferences("MyPref",MODE_PRIVATE);
+            edit= sp.edit();
+            edit.putString("userName",cUserName);
+            edit.commit();
+            System.out.println("MyUserName1"+cUserName);
+            UserVerification.getDashboard();
         }else{
             UserVerification.alreadyLoggedIn(cname,cUserName,cMPin,cBalance,cLogin);
+            System.out.println("MyUserName2"+cUserName);
         }
         }
     }

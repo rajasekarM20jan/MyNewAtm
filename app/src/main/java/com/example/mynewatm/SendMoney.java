@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -23,29 +24,14 @@ public class SendMoney extends AppCompatActivity {
     FloatingActionButton back;
     EditText enterAmountInSendMoney;
     Button buttonInSend;
-    ContentValues values,values1;
-    DbClass dbClass;
-    String position;
-    int pos;
-    SQLiteDatabase dbWriter;
-    SQLiteDatabase dbReader;
-    String[] data={"name","userName","MPin","balance","login"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_money);
-        dbClass=new DbClass(this);
-        dbWriter=dbClass.getWritableDatabase();
-        dbReader=dbClass.getReadableDatabase();
-        values=new ContentValues();
-        values1=new ContentValues();
         back=findViewById(R.id.backInSend);
         enterAmountInSendMoney=findViewById(R.id.enterAmountInSendMoney);
         buttonInSend=findViewById(R.id.buttonInSend);
-        Intent a=getIntent();
-        position=a.getStringExtra("position");
-        pos=Integer.parseInt(position);
         //creating on click listener for back button
         buttonInSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,60 +58,57 @@ public class SendMoney extends AppCompatActivity {
 
     void getDashboard(){
         Intent i=new Intent(this,Dashboard.class);
-        i.putExtra("position",position);
         startActivity(i);
     }
-    void getData(){
-        try {
-        //creating method for sending money
-        Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-        c.moveToPosition(pos);
-        String user=c.getString(1);
-        int availableBalance=Integer.parseInt(c.getString(3));
-        String st=String.valueOf(enterAmountInSendMoney.getText());
-        int sendAmount=Integer.parseInt(st);
-        SimpleDateFormat s=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
-        Date d=new Date();
-
-        if(availableBalance-sendAmount>=0){ //checking whether the user has enough balance for transaction
-                String newBalance = Integer.toString((availableBalance - sendAmount));
-                values.put("balance", newBalance);
-                values.put("name", c.getString(0));
-                values.put("userName", c.getString(1));
-                values.put("MPin", c.getString(2));
-                values.put("login", c.getString(4));
-                dbWriter.update("UserDetails", values, "userName=?", new String[]{user});
-                values1.put("userName", c.getString(1));
-                values1.put("transactions", st + " On " + s.format(d));
-                values1.put("credit", "false");
-                dbWriter = dbClass.getWritableDatabase();
-                dbWriter.insert("Transactions", null, values1);
-                AlertDialog.Builder a = new AlertDialog.Builder(SendMoney.this);
-                a.setTitle(getString(R.string.transactionSuccessful));
-                a.setMessage(getString(R.string.debitMsg)+newBalance);
-                a.setCancelable(false);
-                a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        enterAmountInSendMoney.setText(null);
-                        dialogInterface.cancel();
-                    }
-                });
-                a.show();
-
-        }else{
-            //setting alert Dialog if user does not have enough balance
-            AlertDialog.Builder a=new AlertDialog.Builder(SendMoney.this);
-            a.setTitle(getString(R.string.oops));
-            a.setMessage(getString(R.string.noEnoughBalance));
-            a.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+    void getData() {
+        DbClass dbClass=new DbClass(SendMoney.this);
+        SharedPreferences sp=getSharedPreferences("MyPref",MODE_PRIVATE);
+        String userName=sp.getString("userName","no");
+        System.out.println("MyUserName   :  "+userName);
+        dbClass.getData(userName);
+        String name=dbClass.name;
+        String myUserName=dbClass.userName;
+        String MPin=dbClass.MPin;
+        String balance=dbClass.balance;
+        String login=dbClass.login;
+        System.out.println("MyUserName : "+name+myUserName+MPin+balance+login);
+        int availableBalance=Integer.parseInt(balance);
+        String sndAmt=String.valueOf(enterAmountInSendMoney.getText());
+        int sendAmount=Integer.parseInt(sndAmt);
+        if(availableBalance-sendAmount>=0){
+            System.out.println("MyUserName  : bal :"+(availableBalance-sendAmount));
+            int newBal=availableBalance-sendAmount;
+            String newBalance=Integer.toString(newBal);
+            dbClass=new DbClass(SendMoney.this);
+            dbClass.updateData(name,myUserName,MPin,newBalance,login);
+            SimpleDateFormat sdFormat=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
+            Date d=new Date();
+            String transaction=sndAmt+"\tOn\t"+sdFormat.format(d);
+            String credit="false";
+            dbClass.updateTransactions(myUserName,transaction,credit);
+            AlertDialog.Builder alert=new AlertDialog.Builder(SendMoney.this);
+            alert.setTitle(R.string.transactionSuccessful);
+            alert.setMessage(getString(R.string.debitMsg)+newBalance);
+            alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     enterAmountInSendMoney.setText(null);
+                    dialogInterface.cancel();
                 }
-            });a.show();
-        }}catch (Exception e){
-            enterAmountInSendMoney.setError(getString(R.string.enterValidAmount));
+            });
+            alert.show();
+        }
+        else{
+            AlertDialog.Builder alert=new AlertDialog.Builder(SendMoney.this);
+            alert.setTitle(R.string.oops);
+            alert.setMessage(getString(R.string.noEnoughBalance));
+            alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    enterAmountInSendMoney.setText(null);
+                    dialogInterface.cancel();
+                }
+            });alert.show();
         }
     }
 }

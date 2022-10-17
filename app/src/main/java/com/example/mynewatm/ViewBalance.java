@@ -25,10 +25,8 @@ public class ViewBalance extends AppCompatActivity {
     FloatingActionButton back;
     TextView displayBalance;
     ListView transactionList;
-    DbClass dbClass;
     SharedPreferences sp;
     SQLiteDatabase dbReader;
-    String position,userName;
     int pos;
     String[] data={"name","userName","MPin","balance","login"};
     @Override
@@ -39,15 +37,17 @@ public class ViewBalance extends AppCompatActivity {
         back=findViewById(R.id.backInViewBalance);
         displayBalance=findViewById(R.id.displayBalance);
         transactionList=findViewById(R.id.transactionlist);
-        Intent a=getIntent();
-        position=a.getStringExtra("position");
-        pos=Integer.parseInt(position);
-        dbClass = new DbClass(this);
-        dbReader=dbClass.getReadableDatabase();
-        Cursor c= dbReader.query("UserDetails",data,null,null,null,null,null);
-        c.moveToPosition(pos);
-        userName=c.getString(1);
-        displayBalance.setText(c.getString(3));
+        DbClass dbClass = new DbClass(this);
+        sp=getSharedPreferences("MyPref",MODE_PRIVATE);
+        String a=sp.getString("userName","no");
+        dbClass.getData(a);
+        String name=dbClass.name;
+        String myUserName=dbClass.userName;
+        String MPin=dbClass.MPin;
+        String balance=dbClass.balance;
+        String login=dbClass.login;
+        System.out.println("MyUserName @ viewBal:"+name+myUserName+MPin+balance+login);
+        displayBalance.setText(balance);
         //creating on click listener for floating
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,8 +62,11 @@ public class ViewBalance extends AppCompatActivity {
             sp=getSharedPreferences("MyPref",MODE_PRIVATE);
             String nameOfUser= sp.getString("userName","");
             System.out.println("SharedPreferenceName: "+nameOfUser);
+            DbClass dbClass1=new DbClass(this);
+            dbReader=dbClass1.getReadableDatabase();
             //using RawQuery to get all the data of transactions done for the particular user name.
             Cursor c2 = dbReader.rawQuery("SELECT * FROM Transactions WHERE userName =?",new String[]{nameOfUser});
+            System.out.println("SharedPreferenceName2: "+nameOfUser);
             ArrayList list=new ArrayList<>();
             while (c2.moveToNext()) {
                 System.out.println("My Position:"+c2.getPosition());
@@ -91,7 +94,6 @@ public class ViewBalance extends AppCompatActivity {
 
     void getDashboard(){ // intent for dashboard page
         Intent i=new Intent(this,Dashboard.class);
-        i.putExtra("position",position);
         startActivity(i);
     }
 }

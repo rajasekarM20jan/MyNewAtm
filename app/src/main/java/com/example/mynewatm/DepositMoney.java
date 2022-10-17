@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -18,39 +18,20 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import controller.dbControllerDepositMoney;
-
 public class DepositMoney extends AppCompatActivity {
     //variable initialization
     FloatingActionButton back;
     EditText enterAmountInDeposit;
     Button buttonInDeposit;
-    ContentValues values,values1;
-    DbClass dbClass;
-    String position;
-    int pos;
-    SQLiteDatabase dbWriter;
-    SQLiteDatabase dbReader;
-    String[] data={"name","userName","MPin","balance","login"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //variable declaration
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deposit_money);
-        dbClass=new DbClass(this);
-        dbWriter=dbClass.getWritableDatabase();
-        dbReader=dbClass.getReadableDatabase();
-        values=new ContentValues();
-        values1=new ContentValues();
         back=findViewById(R.id.backInDeposit);
         enterAmountInDeposit=findViewById(R.id.enterAmountInDeposit);
         buttonInDeposit=findViewById(R.id.buttonInDeposit);
-        Intent a=getIntent();
-        position=a.getStringExtra("position");
-        pos=Integer.parseInt(position);
-        System.out.println("Received Position "+position);
-
         //creating onclick listeners
         buttonInDeposit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +59,44 @@ public class DepositMoney extends AppCompatActivity {
 
     public void getDashboard(){ // intent for dashboard
         Intent i=new Intent(this,Dashboard.class);
-        i.putExtra("position",position);
         startActivity(i);
     }
     void getData1(){ //logical activities done through controller class
-        dbControllerDepositMoney deposit= new dbControllerDepositMoney();
-        new dbControllerDepositMoney(DepositMoney.this);
-        deposit.deposit(DepositMoney.this);
-
+        DbClass dbClass=new DbClass(DepositMoney.this);
+        SharedPreferences sp=getSharedPreferences("MyPref",MODE_PRIVATE);
+        String userName=sp.getString("userName","no");
+        System.out.println("MyUserName   :  "+userName);
+        dbClass.getData(userName);
+        String name=dbClass.name;
+        String myUserName=dbClass.userName;
+        String MPin=dbClass.MPin;
+        String balance=dbClass.balance;
+        String login=dbClass.login;
+        System.out.println("MyUserName : "+name+myUserName+MPin+balance+login);
+        int availableBalance=Integer.parseInt(balance);
+        String sndAmt=String.valueOf(enterAmountInDeposit.getText());
+        int addAmount=Integer.parseInt(sndAmt);
+        System.out.println("MyUserName  : bal :"+(availableBalance+addAmount));
+        int newBal=availableBalance+addAmount;
+        String newBalance=Integer.toString(newBal);
+        dbClass=new DbClass(DepositMoney.this);
+        dbClass.updateData(name,myUserName,MPin,newBalance,login);
+        SimpleDateFormat sdFormat=new SimpleDateFormat("dd/MM/y @ hh:mm:ss");
+        Date d=new Date();
+        String transaction=sndAmt+"\tOn\t"+sdFormat.format(d);
+        String credit="true";
+        dbClass.updateTransactions(myUserName,transaction,credit);
+        AlertDialog.Builder alert=new AlertDialog.Builder(DepositMoney.this);
+        alert.setTitle(R.string.transactionSuccessful);
+        alert.setMessage(getString(R.string.creditMsg)+newBalance);
+        alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                enterAmountInDeposit.setText(null);
+                dialogInterface.cancel();
+            }
+        });
+        alert.show();
     }
+
 }

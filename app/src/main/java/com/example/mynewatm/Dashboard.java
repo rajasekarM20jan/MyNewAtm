@@ -30,8 +30,6 @@ public class Dashboard extends AppCompatActivity {
         sendMoney=findViewById(R.id.sendMoney);
         depositMoney=findViewById(R.id.depositMoney);
         viewBalance=findViewById(R.id.viewBalance);
-        Intent a =getIntent();
-        position=a.getStringExtra("position");
         //creating on click methods for required fields
         accountDetails.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,26 +71,18 @@ public class Dashboard extends AppCompatActivity {
 
     void getAccountPage(){ //intent for account page
         Intent i=new Intent(this,AccountDetails.class);
-        i.putExtra("position",position);
-        System.out.println("Sending Position is"+position);
         startActivity(i);
     }
     void getsendMoneyPage(){ // intent for send money page
         Intent i=new Intent(this,SendMoney.class);
-        i.putExtra("position",position);
-        System.out.println("Sending Position is"+position);
         startActivity(i);
     }
     void getDepositPage(){ // intent for deposit money page
         Intent i=new Intent(this,DepositMoney.class);
-        i.putExtra("position",position);
-        System.out.println("Sending Position is"+position);
         startActivity(i);
     }
     void getViewBalancePage(){ // intent for view balance page
         Intent i=new Intent(this,ViewBalance.class);
-        i.putExtra("position",position);
-        System.out.println("Sending Position is"+position);
         startActivity(i);
     }
     void getalert(){ // method for alert on logout being clicked
@@ -111,22 +101,8 @@ public class Dashboard extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 DbClass dbClass=new DbClass(Dashboard.this);
                 SharedPreferences sp=getSharedPreferences("MyPref",MODE_PRIVATE);
-                String a=sp.getString("userName","no");
-                SQLiteDatabase dbReader=dbClass.getReadableDatabase();
-                Cursor c= dbReader.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{a});
-                c.moveToNext();
-                String userName=c.getString(1);
-                String name=c.getString(0);
-                String MPin=c.getString(2);
-                String balance=c.getString(3);
-                SQLiteDatabase dbWriter=dbClass.getWritableDatabase();
-                ContentValues values= new ContentValues();
-                values.put("userName",userName);
-                values.put("name",name);
-                values.put("login","false");
-                values.put("balance",balance);
-                values.put("MPin",MPin);
-                dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
+                String abc=sp.getString("userName","no");
+                dbClass.updateLoginStatus(abc,"false");
                 dialogInterface.cancel();
                 getLoginPage(); // calling method for moving to login page
             }

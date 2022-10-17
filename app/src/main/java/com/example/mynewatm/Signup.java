@@ -69,18 +69,10 @@ int getData1(){
         getResult(); // passing the value for result to the getResult() method
         return result;
     }
-    if(userName.length()!=0){
-        String validate="[a-zA-Z0-9_]{3,16}$";
-        Pattern checkPass= Pattern.compile(validate);
-        Matcher compare = checkPass.matcher(String.valueOf(signupName.getText()));
-        boolean b=compare.matches();
-        if(b){
-            Toast.makeText(this, "Valid UserName", Toast.LENGTH_SHORT).show();
-        }else{
-            result=1;
-            getResult();
-            return result;
-        }
+    if(userName.length()==0){
+        result=1;
+        getResult();
+        return result;
 
     }
     if(signupPin.length()!=6&&confirmPin.length()!=6){
@@ -114,7 +106,6 @@ int getData1(){
                 break;
             }
             case 1:{
-                Toast.makeText(this, "Invalid format for UserName", Toast.LENGTH_SHORT).show();
                 userName.setError("User Name Must contain 3-16 characters");
                 break;
             }
