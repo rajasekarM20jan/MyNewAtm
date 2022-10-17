@@ -122,12 +122,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-   /* public void sendToDbClass(String name,String userName,String MPin,String balance,String login){
+    public void sendToDbClass(String name,String userName,String MPin,String balance,String login){
         System.out.println("MyTr"+name+userName+MPin+balance+login);
         dbclass=new DbClass(MainActivity.this);
         dbclass.updateData(name,userName,MPin,balance,login);
     }
-*/
 
 
 }

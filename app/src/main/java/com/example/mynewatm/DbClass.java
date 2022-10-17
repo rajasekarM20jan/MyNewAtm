@@ -33,8 +33,8 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
        /* myDB.execSQL("DROP TABLE IF EXISTS Interns");
         onCreate(myDB);*/
     }
-}
-    /*public void getDataForLogin(String username, String pin){
+
+    public void getDataForLogin(String username, String pin){
         dbReader=this.getReadableDatabase();
         c=dbReader.rawQuery("SELECT * FROM UserDetails",null);
         boolean b=false;
@@ -73,4 +73,4 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
         System.out.println("MyTr"+values.get(name));
         dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
     }
-}*/
+}
