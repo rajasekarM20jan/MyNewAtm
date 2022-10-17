@@ -47,6 +47,7 @@ public class dbControllerMainActivity {
         linkForSignup.setClickable(true);
     }
 
+
     //creating method for verification in login
     public void loginActivity(MainActivity mainActivity){
         this.UserVerification =mainActivity;
@@ -95,29 +96,13 @@ public class dbControllerMainActivity {
         }
     }
 
-
-
-
-    //Error Area
-    public void verification(String etName,String etPin,String cName,String cUserName,String cMPin,String cBalance,String cLogin,String position){
-        MainActivity m=new MainActivity();
-        if(etName.equals(cUserName)){
-            if(etPin.equals(cMPin)){
-                if(cLogin.equals("false")){
-                    m.sendToDbClass(cName,cUserName,cMPin,cBalance,"true");
-                    m.getDashboard(position);
-                }else{
-                    m.alreadyLoggedIn(cName,cUserName,cMPin,cBalance,cLogin);
-                }
-            }
+    public void getFromDb(MainActivity mainActivity,String cname,String cUserName,String cMPin,String cBalance,String cLogin){
+        this.UserVerification=mainActivity;
+        if(cLogin.equals("false")){
+            UserVerification.getDashboard("0");
         }else{
-            m.getError();
+            UserVerification.alreadyLoggedIn(cname,cUserName,cMPin,cBalance,cLogin);
+        }
         }
     }
-    public void getFromDb(String cname,String cUserName,String cMPin,String cBalance,String cLogin){
-        System.out.println("MyTransfer :"+cname+cUserName+cMPin+cBalance+cLogin);
-        if(cLogin.equals("true")){
-            MainActivity m=new MainActivity();
-        }
-    }
-}
+

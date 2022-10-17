@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
                     if(b) {
 
                         if(etForMPin.length()!=0){
-                        /*dbclass=new DbClass(MainActivity.this);
-                        dbclass.getDataForLogin(String.valueOf(etForUserName.getText()),String.valueOf(etForMPin.getText()));*/
-                            getData1();
+
+                        /*getFromDb();*/
+                         getData1();
                         }else{
                             etForMPin.setError(getString(R.string.emptyField)); // Setting Error Message if MPin is Empty
                         }
@@ -121,12 +121,20 @@ public class MainActivity extends AppCompatActivity {
         });alert.show();
     }
 
-//Error Area
-    public void sendToDbClass(String name,String userName,String MPin,String balance,String login){
-        System.out.println("MyTr"+name+userName+MPin+balance+login);
+
+    public void getFromDb(){
         dbclass=new DbClass(MainActivity.this);
-        dbclass.updateData(name,userName,MPin,balance,login);
+        dbclass.getDataForLogin(String.valueOf(etForUserName.getText()),String.valueOf(etForMPin.getText()));
+        String name=dbclass.name;
+        String userName=dbclass.userName;
+        String MPin=dbclass.MPin;
+        String balance=dbclass.balance;
+        String login=dbclass.login;
+        dbControllerMainActivity d=new dbControllerMainActivity(MainActivity.this);
+        System.out.println("MYTransaction"+name+userName+MPin+balance+login);
+        d.getFromDb(MainActivity.this,name,userName,MPin,balance,login);
     }
+
 
 
 }
