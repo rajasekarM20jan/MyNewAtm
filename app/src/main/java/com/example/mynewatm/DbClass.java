@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
@@ -12,7 +13,10 @@ import controller.dbControllerMainActivity;
 
 public class DbClass extends SQLiteOpenHelper { //Database Creation class
 
-
+    DbClass dbClass;
+    SQLiteDatabase dbReader, dbWriter;
+    Cursor c;
+    ContentValues values;
 
     public DbClass(@Nullable Context context) {
         super(context, "UserAccounts", null, 7);
@@ -29,9 +33,10 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
        /* myDB.execSQL("DROP TABLE IF EXISTS Interns");
         onCreate(myDB);*/
     }
-    public void getDataForLogin(String username, String pin){
-        SQLiteDatabase dbReader=this.getReadableDatabase();
-        Cursor c=dbReader.rawQuery("SELECT * FROM UserDetails",null);
+}
+    /*public void getDataForLogin(String username, String pin){
+        dbReader=this.getReadableDatabase();
+        c=dbReader.rawQuery("SELECT * FROM UserDetails",null);
         boolean b=false;
         while(c.moveToNext()){
             System.out.println("MyT  "+username+"OOPs    "+pin);
@@ -47,6 +52,7 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
                 System.out.println("MyT"+name+userName+MPin+balance+login+position);
                 dbControllerMainActivity db= new dbControllerMainActivity();
                 db.verification(username,pin,name,userName,MPin,balance,login,position);
+                c.close();
             }
         }
         if(!b){
@@ -54,18 +60,11 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
             m.getError();
         }
     }
-    void userDatabase(){
-        SQLiteDatabase dbReader=this.getReadableDatabase();
-        Cursor c=dbReader.rawQuery("SELECT * FROM UserDetails",null);
-
-    }
     public void updateData(String name,String userName,String MPin,String balance,String login){
         System.out.println("MYTransaction"+name+userName+MPin+balance+login);
-        userDatabase();
-        SQLiteDatabase dbWriter=this.getWritableDatabase();
-        Cursor c=dbWriter.rawQuery("SELECT * FROM UserDetails WHERE userName=?",new String[]{userName});
+        dbWriter=this.getWritableDatabase();
         // _____________Above line gives error
-        ContentValues values = new ContentValues();
+        values = new ContentValues();
         values.put("name",name);
         values.put("userName",userName);
         values.put("MPin",MPin);
@@ -74,4 +73,4 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
         System.out.println("MyTr"+values.get(name));
         dbWriter.update("UserDetails",values,"userName=?",new String[]{userName});
     }
-}
+}*/

@@ -21,7 +21,7 @@ import model.UserDetailsDB;
 
 public class dbControllerMainActivity {
     //variable declaration
-    /*DbClass dbClass;
+    DbClass dbClass;
     SQLiteDatabase dbReader,dbWriter;
     ContentValues values;
     String[] data={"name","userName","MPin","balance","login"};
@@ -94,7 +94,12 @@ public class dbControllerMainActivity {
            UserVerification.getError();
         }
     }
-*/
+
+
+
+
+    /*
+    Gives ERROR as  java.lang.NullPointerException: Attempt to invoke virtual method 'java.io.File android.content.Context.getDatabasePath(java.lang.String)' on a null object reference.
     public void verification(String etName,String etPin,String cName,String cUserName,String cMPin,String cBalance,String cLogin,String position){
         MainActivity m=new MainActivity();
         if(etName.equals(cUserName)){
@@ -109,5 +114,11 @@ public class dbControllerMainActivity {
         }else{
             m.getError();
         }
-    }
+    }*/
+   /* public void getFromDb(String cname,String cUserName,String cMPin,String cBalance,String cLogin){
+        System.out.println("MyTransfer :"+cname+cUserName+cMPin+cBalance+cLogin);
+        *//*if(cLogin.equals("true")){
+            MainActivity m=new MainActivity();
+        }*//*
+    }*/
 }

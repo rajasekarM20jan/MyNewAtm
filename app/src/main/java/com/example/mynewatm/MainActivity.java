@@ -12,6 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import controller.dbControllerMainActivity;
 
 public class MainActivity extends AppCompatActivity {
     //variable initialization
@@ -40,11 +46,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(etForUserName.length()!=0){
-                    if(etForMPin.length()!=0){
-                        dbclass=new DbClass(MainActivity.this);
-                        dbclass.getDataForLogin(String.valueOf(etForUserName.getText()),String.valueOf(etForMPin.getText()));
-                    }else{
-                        etForMPin.setError(getString(R.string.emptyField)); // Setting Error Message if MPin is Empty
+                    String validate="[a-zA-Z0-9_]{3,16}$";
+                    Pattern checkPass= Pattern.compile(validate);
+                    Matcher compare = checkPass.matcher(String.valueOf(etForUserName.getText()));
+                    boolean b=compare.matches();
+                    if(b) {
+
+                        if(etForMPin.length()!=0){
+                        /*dbclass=new DbClass(MainActivity.this);
+                        dbclass.getDataForLogin(String.valueOf(etForUserName.getText()),String.valueOf(etForMPin.getText()));*/
+                            getData1();
+                        }else{
+                            etForMPin.setError(getString(R.string.emptyField)); // Setting Error Message if MPin is Empty
+                        }
+                    }else {
+                        Toast.makeText(MainActivity.this, "Enter a Valid userName", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     etForUserName.setError(getString(R.string.emptyField)); //Setting error message if UserName is Empty
@@ -77,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
         etForUserName.setError("Invalid User Credentials");
         etForMPin.setError("Invalid User Credentials");
     }
-    /*//Calling the function of dbController for Main activity to perform the logical operations and get result according to the same.
+    //Calling the function of dbController for Main activity to perform the logical operations and get result according to the same.
     void getData1(){
         dbControllerMainActivity db=new dbControllerMainActivity();
         db.loginActivity(MainActivity.this);
         new dbControllerMainActivity(MainActivity.this);
-    }*/
+    }
     public void alreadyLoggedIn(String name,String userName,String MPin,String balance,String login){
-        AlertDialog.Builder alert= new AlertDialog.Builder(this);
+        AlertDialog.Builder alert= new AlertDialog.Builder(MainActivity.this);
         alert.setTitle(R.string.alreadyLoggedIn);
         alert.setMessage(R.string.alreadyLoggedInText);
         alert.setCancelable(false);
@@ -106,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void sendToDbClass(String name,String userName,String MPin,String balance,String login){
+   /* public void sendToDbClass(String name,String userName,String MPin,String balance,String login){
         System.out.println("MyTr"+name+userName+MPin+balance+login);
         dbclass=new DbClass(MainActivity.this);
         dbclass.updateData(name,userName,MPin,balance,login);
     }
-
+*/
 
 
 }
