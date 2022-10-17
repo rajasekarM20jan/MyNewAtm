@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Signup extends AppCompatActivity {
     //Variable Initialization
     EditText signupName,userName,signupPin,confirmPin;
@@ -61,14 +64,24 @@ public class Signup extends AppCompatActivity {
 int getData1(){
     // checking the data for all the inputs whether is empty or not
     if(signupName.length()==0){
+
         result=0;
         getResult(); // passing the value for result to the getResult() method
         return result;
     }
-    if(userName.length()==0){
-        result=1;
-        getResult();
-        return result;
+    if(userName.length()!=0){
+        String validate="[a-zA-Z0-9_]{3,16}$";
+        Pattern checkPass= Pattern.compile(validate);
+        Matcher compare = checkPass.matcher(String.valueOf(signupName.getText()));
+        boolean b=compare.matches();
+        if(b){
+            Toast.makeText(this, "Valid UserName", Toast.LENGTH_SHORT).show();
+        }else{
+            result=1;
+            getResult();
+            return result;
+        }
+
     }
     if(signupPin.length()!=6&&confirmPin.length()!=6){
         result=2;
@@ -101,7 +114,8 @@ int getData1(){
                 break;
             }
             case 1:{
-                userName.setError(getString(R.string.emptyField));
+                Toast.makeText(this, "Invalid format for UserName", Toast.LENGTH_SHORT).show();
+                userName.setError("User Name Must contain 3-16 characters");
                 break;
             }
             case 2:{
