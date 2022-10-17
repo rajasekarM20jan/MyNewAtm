@@ -60,6 +60,9 @@ public class DbClass extends SQLiteOpenHelper { //Database Creation class
             m.getError();
         }
     }
+    //Error Area
+    //Gives ERROR as  java.lang.NullPointerException: Attempt to invoke virtual method ...
+    //.. 'java.io.File android.content.Context.getDatabasePath(java.lang.String)' on a null object reference.
     public void updateData(String name,String userName,String MPin,String balance,String login){
         System.out.println("MYTransaction"+name+userName+MPin+balance+login);
         dbWriter=this.getWritableDatabase();
